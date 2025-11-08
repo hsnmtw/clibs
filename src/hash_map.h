@@ -4,16 +4,7 @@
 #include <stdint.h>
 #include <math.h>
 #include "macros.h"
-/*
-[TRC] : misses on hash lookup = 176600
-[TRC] : miss times on hash lookup = 1269
-[INF] : hash('tomato') = 0x00A2D55F6
-[INF] : hash('toomat') = 0x00C4E5940
-[INF] : hash('tomaot') = 0x00A2B01D0
-[INF] : hash('tomato') = 0x00A2D55F6
-[INF] : hash('omatot') = 0x013719D1E
-[INF] : hash('Tomato') = 0x00FF6888C
-*/
+
 #pragma once
 
 #define MAP_INCREMENT_SIZE 109
@@ -34,12 +25,12 @@ static size_t mizz = 0;
 //    INTERFACE
 // --------------------------------------------------------------------
 //
-    typedef struct entry_t {
+    typedef struct {
         char *key;
         int   val;
     } entry_t;
 
-    typedef struct hash_map_t {
+    typedef struct {
         entry_t *items;
         size_t count;
         size_t capacity;
