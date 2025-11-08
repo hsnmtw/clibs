@@ -40,7 +40,11 @@ int main(void) {
 
     //hash_map_add(NULL,"","");
 
-
-    
+    inf("hash('%s') = 0x%09X","tomato",hash_map_hash("tomato"));    
+    inf("hash('%s') = 0x%09X","toomat",hash_map_hash("toomat"));    
+    inf("hash('%s') = 0x%09X","tomaot",hash_map_hash("tomaot"));    
+    inf("hash('%s') = 0x%09X","tomato",hash_map_hash("tomato"));    
+    inf("hash('%s') = 0x%09X","omatot",hash_map_hash("omatot"));    
+    inf("hash('%s') = 0x%09X","Tomato",hash_map_hash("Tomato"));    
     return 0;
 }
