@@ -5,6 +5,7 @@
 #include "http_server.h"
 #include "dates.h"
 #include "hash_map.h"
+#include "dyn_arr.h"
 
 response_t home(request_t) {
     return (response_t) { 200, HTTP_CONTENT_HTTP, strcat("home: "," : ")};
@@ -47,6 +48,9 @@ int main(void) {
     inf("hash('%s') = 0x%09X","tomato",hash_map_hash("tomato"));    
     inf("hash('%s') = 0x%09X","omatot",hash_map_hash("omatot"));    
     inf("hash('%s') = 0x%09X","Tomato",hash_map_hash("Tomato")); 
+
+
+    test_dyn_arr();
     
     return 0;
 }
