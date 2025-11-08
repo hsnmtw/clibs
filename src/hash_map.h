@@ -44,10 +44,6 @@ static size_t miss = 0;
     // if key is unavailable, returns newly empty item index
     HASH_MAP_API int  hash_map_index(hash_map_t *map, const char *key);
 
-    // determines if the key providd at given index is a match, or the entry is empty
-    HASH_MAP_API int  hash_map_is_match_or_empty(hash_map_t *map, const char *key, int index);
-    HASH_MAP_API int  hash_map_is_key_used(hash_map_t *map, const char *key, int index);
-
     // if the entries set is NULL or count == 0 or capacity == 0, resize, and make capacity doubled
     // after every add, the count is incremented
     // side effects: 
@@ -134,15 +130,6 @@ static size_t miss = 0;
         dbg("count = %zu,, cap=%zu", map->count, map->capacity);
     }
 
-    HASH_MAP_API int  hash_map_is_match_or_empty(hash_map_t *map, const char *key, int index) {
-        assertf(map != NULL, " hash map is null ");
-        assertf(map->capacity > 0, " the hash map is not initialized yet ");
-        assertf(index < (int)map->capacity && index >= 0," expect the index to be in range [0, %zu], the provided index is %d", map->capacity - 1, index);
-        
-        return map->items[index].key == NULL 
-            || strcmp(key, map->items[index].key)==0;
-    }
-
     HASH_MAP_API int  hash_map_is_key_used(hash_map_t *map, const char *key, int index) {
         assertf(map != NULL, " hash map is null ");
         assertf(map->capacity > 0, " the hash map is not initialized yet ");
@@ -166,8 +153,6 @@ static size_t miss = 0;
             if (d<n  && map->items[d].key != NULL && strcmp(map->items[d].key, key) == 0) return d;
             u--;
             d++;
-            // if (map->items[u].key != NULL && strcmp(map->items[u].key, key) == 0) return u;
-            // u = (u+1)%n;
             miss++;
         }
         
@@ -177,8 +162,6 @@ static size_t miss = 0;
             if (d<n  && map->items[d].key == NULL) return d;
             u--;
             d++;
-            // if(map->items[u].key == NULL) return u;
-            // u = (u+1)%n;
             miss++;
         }
 
