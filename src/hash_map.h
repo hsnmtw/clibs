@@ -2,11 +2,21 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
+#include <math.h>
 #include "macros.h"
-
+/*
+[TRC] : misses on hash lookup = 176600
+[TRC] : miss times on hash lookup = 1269
+[INF] : hash('tomato') = 0x00A2D55F6
+[INF] : hash('toomat') = 0x00C4E5940
+[INF] : hash('tomaot') = 0x00A2B01D0
+[INF] : hash('tomato') = 0x00A2D55F6
+[INF] : hash('omatot') = 0x013719D1E
+[INF] : hash('Tomato') = 0x00FF6888C
+*/
 #pragma once
 
-#define MAP_INCREMENT_SIZE 110
+#define MAP_INCREMENT_SIZE 109
 
 
 #ifndef __HASH_MAP_H
@@ -78,15 +88,9 @@ static size_t mizz = 0;
 #   define __HASH_MAP_IMPL
 
     #define HASH_FACTOR 391993711
-    #define PRIMES_LEN 123
+    #define PRIMES_LEN 20
     const uint32_t primes[] = {
-        193939,3,263,76801,293,359,18253,1201,1931,37199,193,391939,393919,13873,101,353,9311,
-        71,28813,993319,389,939391,233,19,307,971,83,4801,65713,127,191,269,991,7793,211,227,
-        113,41,257,107,179,2,251,37,12289,23,157,71993,137,149,43201,9377,10093,20173,401,719,
-        17,733,67,11,919,3119,769,19391,99371,115249,112909,167,53,47629,93911,84673,1193,999331,
-        311,3779,3469,197,69313,3889,11939,37633,21169,337,93719,281,139,106033,131,91193,379,89,
-        73009,19937,109,39119,317,60493,939193,199,7937,1453,29,31,933199,59,181,319993,22189,
-        331999,347,47,5,239,13,2029,433,108301,919393,7,63949,199933,409,
+        2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71
     };
 
     HASH_MAP_API uint32_t hash_map_hash(const char *text) {
@@ -94,7 +98,7 @@ static size_t mizz = 0;
         size_t n = strlen(text);
         long long sum = 0;
         for(size_t i=0;i<n;++i) {
-            sum += primes[((uint32_t)text[i])%PRIMES_LEN]*(n-i+1);
+            sum += pow(primes[((uint32_t)text[i])%PRIMES_LEN],(n-i));
         }
         return (uint32_t) (sum < 0 ? -sum : sum) % HASH_FACTOR;
     }
