@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "macros.h"
+#include "macros.h"
 
 #pragma once
 
@@ -41,6 +42,7 @@
 #   define __SET_IMPL
 
     SET_API void set_append(set_t *set, char *value) {
+        if (set == NULL || value == NULL) return;
         if (set->count >= set->capacity) {
             size_t size = sizeof(char*)*(set->count+SET_INC_SIZE);
             char **items = (char**)malloc(size); 
@@ -94,7 +96,7 @@
         set_append(&set,"first");
         set_append(&set,"dyn");
         assertf(set.count == 3,"set is 3 items now");
-        set_append(&set,"setay");
+        set_append(&set,"set");
         set_append(&set,"test");
         assertf(set.count == 5,"set is 5 items now");
 

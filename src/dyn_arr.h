@@ -41,6 +41,7 @@
 #   define __DYN_ARR_IMPL
 
     DYN_ARR_API void dyn_arr_append(dyn_arr_t *arr, char *value) {
+        if (arr == NULL || value == NULL) return;
         if (arr->count >= arr->capacity) {
             size_t size = sizeof(char*)*(arr->count+DYN_ARR_INC_SIZE);
             char **items = (char**)malloc(size); 
