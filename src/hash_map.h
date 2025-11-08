@@ -2,12 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
-#include <math.h>
 #include "macros.h"
 
 #pragma once
 
-#define MAP_INCREMENT_SIZE 123
+#define MAP_INCREMENT_SIZE 110
 
 
 #ifndef __HASH_MAP_H
@@ -95,7 +94,7 @@ static size_t mizz = 0;
         size_t n = strlen(text);
         long long sum = 0;
         for(size_t i=0;i<n;++i) {
-            sum += sqrt(pow(primes[((uint32_t)text[i])%PRIMES_LEN],n-i));
+            sum += primes[((uint32_t)text[i])%PRIMES_LEN]*(n-i+1);
         }
         return (uint32_t) (sum < 0 ? -sum : sum) % HASH_FACTOR;
     }

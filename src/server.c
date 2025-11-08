@@ -1,6 +1,7 @@
 #define _SERVER_HTTP_IMPLEMENTATION
 #include <stdio.h>
 #include "macros.h"
+#include "string.h"
 #include "http_server.h"
 #include "dates.h"
 #include "hash_map.h"
@@ -45,6 +46,7 @@ int main(void) {
     inf("hash('%s') = 0x%09X","tomaot",hash_map_hash("tomaot"));    
     inf("hash('%s') = 0x%09X","tomato",hash_map_hash("tomato"));    
     inf("hash('%s') = 0x%09X","omatot",hash_map_hash("omatot"));    
-    inf("hash('%s') = 0x%09X","Tomato",hash_map_hash("Tomato"));    
+    inf("hash('%s') = 0x%09X","Tomato",hash_map_hash("Tomato")); 
+    
     return 0;
 }
