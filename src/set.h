@@ -58,8 +58,9 @@
             set->items = items;
             set->capacity += SET_INC_SIZE;
         }
+        uint32_t hash = hash_map_hash(value);
         for(size_t i=0;i<set->count;++i) {
-            if (set->items[i] != NULL && strcmp(set->items[i],value)==0) return;
+            if (set->items[i] != NULL && hash_map_hash(set->items[i])==hash) return;
         }
         set->items[set->count++] = strdup(value);
     }

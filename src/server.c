@@ -9,7 +9,7 @@
 #include "set.h"
 
 response_t home(request_t) {
-    return (response_t) { 200, HTTP_CONTENT_HTTP, strcat("home: "," : ")};
+    return (response_t) { 200, HTTP_CONTENT_HTTP, "home: "};
 }
 
 response_t push(request_t) {
