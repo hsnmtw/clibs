@@ -6636,7 +6636,7 @@ void test_date_h_get_week_day(void) {
         }
         success++;        
     }
-    printf("[\033[1;44m%-30s\033[0m] tests, all = %d --- success = %d\n", __func__, all, success);
+    inf("[\033[1;44m%-30s\033[0m] tests, all = %d --- success = %d", __func__, all, success);
 }
 
 
@@ -6683,7 +6683,7 @@ DATES_API void test_date_h_dates_1(void) {
         success++;
     }
     
-    printf("[\033[1;44m%-30s\033[0m] tests, all = %d --- success = %d\n", __func__, all, success);
+    inf("[\033[1;44m%-30s\033[0m] tests, all = %d --- success = %d", __func__, all, success);
 }
 
 
@@ -6727,7 +6727,7 @@ DATES_API void test_date_h_dates_2(void) {
         
         success++;
     }
-    printf("[\033[1;44m%-30s\033[0m] tests, all = %d --- success = %d\n", __func__, all, success);
+    inf("[\033[1;44m%-30s\033[0m] tests, all = %d --- success = %d", __func__, all, success);
 }
 
 #endif//__DATES_H

@@ -7,6 +7,15 @@
 #define inf(f,...) fprintf(stdout,"\033[1;32m[INF]\033[0m : "f" \n",##__VA_ARGS__)
 #endif//inf
 
+#ifndef dbg
+#define dbg(f,...) do{ /*fprintf(stdout,"\033[1;34m[DBG]\033[0m : "f" \n",##__VA_ARGS__)*/ }while(0)
+#endif//dbg
+
+#ifndef trc
+#define trc(f,...) fprintf(stdout,"\033[1;35m[TRC]\033[0m : "f" \n",##__VA_ARGS__)
+#endif//trc
+
+
 #ifndef wrn
 #define wrn(f,...) fprintf(stdout,"\033[1;43m[WRN]\033[0m : "f" \n",##__VA_ARGS__)
 #endif//wrn
