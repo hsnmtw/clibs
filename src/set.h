@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "macros.h"
+
+#pragma once
+
+#ifndef __SET_H
+#define __SET_H
+
+#ifndef SET_API
+#define SET_API
+#endif//SET_API
+
+#define SET_INC_SIZE 50
+//
+// --------------------------------------------------------------------
+//    INTERFACE
+// --------------------------------------------------------------------
+//
+
+    typedef struct {
+        char **items;
+        size_t count;
+        size_t capacity;
+    } set_t;
+
+    SET_API void set_append(set_t *set, char *value);
+    SET_API char *set_get(set_t *set, size_t index);
+    SET_API void set_remove_at(set_t *set, size_t index);
+    SET_API void set_clear(set_t *set);
+
+
+//
+// --------------------------------------------------------------------
+//    IMPLEMENTATION
+// --------------------------------------------------------------------
+//
+
+#   ifndef __SET_IMPL
+#   define __SET_IMPL
+
+    SET_API void set_append(set_t *set, char *value) {
+        if (set->count >= set->capacity) {
+            size_t size = sizeof(char*)*(set->count+SET_INC_SIZE);
+            char **items = (char**)malloc(size); 
+            memset(items,0,size);
+            if (set->items != NULL) {
+                for(size_t i=0;i<set->capacity;++i) {
+                    if (set->items[i] == NULL) continue;
+                    items[i] = strdup(set->items[i]);
+                    free(set->items[i]);
+                }
+                free(set->items);
+            }
+            set->items = items;
+            set->capacity += SET_INC_SIZE;
+        }
+        for(size_t i=0;i<set->count;++i) {
+            if (set->items[i] != NULL && strcmp(set->items[i],value)==0) return;
+        }
+        set->items[set->count++] = strdup(value);
+    }
+
+    SET_API char *set_get(set_t *set, size_t index) {
+        if (set == NULL || set->items == NULL) return NULL;
+        if (index >= set->capacity) return NULL;
+        return set->items[index];
+    }
+
+    SET_API void set_remove_at(set_t *set, size_t index) {
+        if (set == NULL || set->items == NULL) return;
+        if (index >= set->capacity) return;
+        if(set->items[index] != NULL) free(set->items[index]);
+    }
+
+    SET_API void set_clear(set_t *set) {
+        if (set == NULL || set->items == NULL) return;
+        for(size_t i=0;i<set->capacity;++i) {
+            if(set->items[i] != NULL) free(set->items[i]);
+        }
+        memset(set->items,0,sizeof(char*)*set->capacity);
+        free(set->items);
+        set->items = NULL;
+        set->count = 0;
+        set->capacity = 0;
+    }
+
+    SET_API void test_set(void) {
+        set_t set = {0};
+        assertf(set.count == 0,"set is null initially");
+        assertf(set.capacity == 0,"set is null initially");
+        set_append(&set,"my");
+        set_append(&set,"first");
+        set_append(&set,"dyn");
+        assertf(set.count == 3,"set is 3 items now");
+        set_append(&set,"setay");
+        set_append(&set,"test");
+        assertf(set.count == 5,"set is 5 items now");
+
+        assertf(strcmp(set_get(&set,2),"dyn")==0,"test get by index");
+        assertf(set_get(&set,10)==NULL,"test get by index NULL item");
+
+        
+        assertf(set.capacity==50,"should have capacity = 50");
+        for(size_t i=0;i<100;++i) set_append(&set,"test");
+        assertf(set.count==5,"should have 5 items now, but got %lld", set.count);
+        assertf(set.capacity==50,"should have capacity of 150, but got %lld", set.capacity);
+        
+        set_clear(&set);
+        assertf(set.count == 0,"set is cleared");
+        assertf(set.capacity == 0,"set is cleared, capacity is zero");
+
+        inf("[\033[1;44m%-30s\033[0m] tests", __func__);
+    }
+
+#   endif//__SET_IMPL
+
+#endif//__SET_H

@@ -6,6 +6,7 @@
 #include "dates.h"
 #include "hash_map.h"
 #include "dyn_arr.h"
+#include "set.h"
 
 response_t home(request_t) {
     return (response_t) { 200, HTTP_CONTENT_HTTP, strcat("home: "," : ")};
@@ -51,6 +52,8 @@ int main(void) {
 
 
     test_dyn_arr();
+
+    test_set();
     
     return 0;
 }

@@ -108,7 +108,7 @@
         assertf(arr.count == 0,"arr is cleared");
         assertf(arr.capacity == 0,"arr is cleared, capacity is zero");
 
-        inf("[\033[1;44m%-30s\033[0m] tests, all = %d --- success = %d", __func__, 8, 8);
+        inf("[\033[1;44m%-30s\033[0m] tests", __func__);
     }
 
 #   endif//__DYN_ARR_IMPL
