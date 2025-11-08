@@ -41,15 +41,14 @@ int main(void) {
 
     test_hash_map_hash();
 
-    //hash_map_add(NULL,"","");
-
-    inf("hash('%s') = 0x%09X","tomato",hash_map_hash("tomato"));    
-    inf("hash('%s') = 0x%09X","toomat",hash_map_hash("toomat"));    
-    inf("hash('%s') = 0x%09X","tomaot",hash_map_hash("tomaot"));    
-    inf("hash('%s') = 0x%09X","tomato",hash_map_hash("tomato"));    
-    inf("hash('%s') = 0x%09X","omatot",hash_map_hash("omatot"));    
-    inf("hash('%s') = 0x%09X","Tomato",hash_map_hash("Tomato")); 
-
+    assertf(hash_map_hash("abc") != hash_map_hash("abC"), "abc != abC");
+    assertf(hash_map_hash("aBc") != hash_map_hash("abc"), "aBc != abc");
+    assertf(hash_map_hash("Abc") != hash_map_hash("abc"), "Abc != abc");
+    assertf(hash_map_hash("ABc") != hash_map_hash("abc"), "ABc != abc");
+    assertf(hash_map_hash("bca") != hash_map_hash("abc"), "bca != abc");
+    assertf(hash_map_hash("bac") != hash_map_hash("cba"), "bac != cba");
+    assertf(hash_map_hash("cba") != hash_map_hash("abc"), "cba != abc");
+    assertf(hash_map_hash("cba") == hash_map_hash("cba"), "cba == cba");
 
     test_dyn_arr();
 
