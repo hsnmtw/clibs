@@ -124,6 +124,7 @@ static size_t mizz = 0;
                 for(size_t i=0;i<map->capacity;++i) {
                     if (map->items[i].key==NULL) continue;
                     items[hash_map_index(&nmap,map->items[i].key)] = map->items[i];//(entry_t) {strdup(map->items[i].key), map->items[i].val};
+                    // items[i] = map->items[i];//(entry_t) {strdup(map->items[i].key), map->items[i].val};
                     c += 1;
                 }
                 free(map->items);
@@ -166,10 +167,12 @@ static size_t mizz = 0;
         
         if (u>-1 && map->items[u].key != NULL && strcmp(map->items[u].key, key) == 0) return u;
         mizz++;
-        for ( int i=0; i < n && (u>-1 || d<n); ++i ) {
+        size_t nn = 0;
+        for ( int i=0; i < n && nn<map->count && (u>-1 || d<n); ++i ) {
             if (u>-1 && map->items[u].key != NULL && strcmp(map->items[u].key, key) == 0) return u;
             if (d<n  && map->items[d].key != NULL && strcmp(map->items[d].key, key) == 0) return d;
-            
+            if (u>-1 && map->items[u].key != NULL) nn++;
+            if (d<n  && map->items[d].key != NULL) nn++;
             u--;
             d++;
             miss++;
