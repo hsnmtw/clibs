@@ -40,7 +40,6 @@ int main(void) {
     test_date_h_dates_2();
 
     test_hash_map_hash();
-    test_hash_map_hash_shakespeare();
 
     assertf(hash_map_hash("abc") != hash_map_hash("abC"), "abc != abC");
     assertf(hash_map_hash("aBc") != hash_map_hash("abc"), "aBc != abc");
@@ -51,9 +50,17 @@ int main(void) {
     assertf(hash_map_hash("cba") != hash_map_hash("abc"), "cba != abc");
     assertf(hash_map_hash("cba") == hash_map_hash("cba"), "cba == cba");
 
+    inf("testing dyn arr");
     test_dyn_arr();
-
+    
+    inf("testing set");
     test_set();
+    
+    
+    inf("testing shakespeare ... this might take a while");
+    test_hash_map_hash_shakespeare();
+
+    inf("DONE testing");
     
     return 0;
 }

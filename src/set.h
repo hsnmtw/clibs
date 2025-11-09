@@ -44,13 +44,21 @@
 #   ifndef __SET_IMPL
 #   define __SET_IMPL
 
-    SET_API void set_init(set_t *arr) {
-        size_t size = sizeof(char*)*(DYN_ARR_INC_SIZE);
-        char **items = (char**)malloc(size); 
-        memset(items,0,size);
-        arr->capacity = DYN_ARR_INC_SIZE;
-        arr->hashes = (uint32_t*)malloc(sizeof(uint32_t)*(arr->capacity));
-
+    SET_API void set_init(set_t *set) {
+        if (set == NULL) return;
+        if (set->items != NULL) {
+            for(size_t i=0;i<set->capacity;++i) {
+                if(set->items[i] == NULL) continue;
+                free(set->items[i]);
+            }
+            free(set->items);
+        }
+        size_t size = sizeof(char*)*(SET_INC_SIZE);
+        set->items = (char**)malloc(size); 
+        memset(set->items,0,size);
+        set->capacity = SET_INC_SIZE;
+        set->hashes = (uint32_t*)malloc(sizeof(uint32_t)*(set->capacity));
+        set->count = 0;
     }
 
     SET_API bool set_contains(set_t *set, char *value) {
@@ -66,7 +74,7 @@
         if (set == NULL || value == NULL) return;
         if (set->items == NULL || set->hashes==NULL) set_init(set);
         if (set_contains(set,value)) return;
-        if (set->count+1 >= set->capacity) {
+        if (set->count+1 > set->capacity) {
             set->items = (char**)realloc(set->items,sizeof(char*)*(set->capacity+SET_INC_SIZE)); 
             set->hashes = (uint32_t*)realloc(set->hashes,sizeof(uint32_t)*(set->capacity+SET_INC_SIZE));
             memset(set->items+set->count,0,sizeof(char*)*(SET_INC_SIZE));

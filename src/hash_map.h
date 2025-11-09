@@ -636,30 +636,32 @@ static size_t mizz = 0;
             fclose(file);
             return;
         }
-        char buffer[1] = {0};
+        char buffer[BUFF_LEN] = {0};
         char word[100];// = (char*)malloc(sizeof(char)*100);
         // memset(word,0,sizeof(char)*100);
         size_t r;
         size_t i;
-        //size_t w=1;
+        size_t w=1;
         hash_map_t map = {0};
         hash_map_init(&map);
-        while ((r = fread(buffer,sizeof(char),1,file)) > 0) {
-            if (isspace(buffer[0]) || i>=100) {
-                if (strlen(word)>0) {
-                    int index = hash_map_index(&map,word);
-                    if (!(map.items[index].key == NULL || strcmp(map.items[index].key, word) != 0)) {
-                        map.items[index].val += 1;
-                    } else {
-                        //inf(" shakespeare : [%04lld] '%s'",w++,word);
-                        hash_map_add(&map,word,1);
+        while ((r = fread(buffer,sizeof(char),BUFF_LEN,file)) > 0) {
+            for(size_t b=0;b<BUFF_LEN;++b){
+                if (isspace(buffer[b]) || i>=100) {
+                    if (strlen(word)>0) {
+                        int index = hash_map_index(&map,word);
+                        if (!(map.items[index].key == NULL || strcmp(map.items[index].key, word) != 0)) {
+                            map.items[index].val += 1;
+                        } else {
+                            inf(" shakespeare : [%04lld] '%s'",w++,word);
+                            hash_map_add(&map,word,1);
+                        }
                     }
+                    for(i=0;i<100;++i) word[i] = 0;
+                    i=0;
+                    continue;
                 }
-                for(i=0;i<100;++i) word[i] = 0;
-                i=0;
-                continue;
+                word[i++] = buffer[b];
             }
-            word[i++] = buffer[0];
         }
         // free(word);
         fclose(file);
