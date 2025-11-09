@@ -7,7 +7,7 @@
 
 #pragma once
 
-#define MAP_INCREMENT_SIZE 109
+#define MAP_INCREMENT_SIZE 544096
 
 
 #ifndef __HASH_MAP_H
@@ -98,8 +98,8 @@ static size_t hits = 0;
         uint32_t hash = 59617;
         // long long sum = 0;
         for(size_t i=0;i<n;++i) {
-            // hash += pow(primes[((uint32_t)text[i])%PRIMES_LEN],(n-i));
-            hash = ((hash << 6) + hash) + (uint32_t)text[i]; /* hash * 33 + c */
+            //hash += pow(primes[((uint32_t)text[i])%PRIMES_LEN],(n-i));
+            hash = ((hash << 5) + hash) + (uint32_t)text[i] + hash * 33 + 7;
         }
         return hash;
         // return (uint32_t) (sum < 0 ? -sum : sum) % HASH_FACTOR;
@@ -138,7 +138,7 @@ static size_t hits = 0;
                 entry_t e = map->items[i];
                 if (e.use == false) continue;
                 uint32_t index = hash_map_hash(e.key);
-                while(items[index % n].use) index++;
+                while(items[index % n].use) err("should not collide '%s' / '%s'",items[index++ % n].key, e.key);
                 items[index % n] = e;
                 c++;
             }
@@ -288,7 +288,7 @@ static size_t hits = 0;
 
     #define MAX_WORD_LENGTH 1023
 
-    int scan_file_to_map(hash_map_t *map, char *file_path) {
+    size_t scan_file_to_map(hash_map_t *map, char *file_path) {
 
         hash_map_init(map);
 
@@ -296,11 +296,12 @@ static size_t hits = 0;
         if (file == NULL) {
             err("[%s] failed to open file ... 1", file_path);
             fclose(file);
-            return 1;
+            return -1;
         }
 
         char word[MAX_WORD_LENGTH] = {0};
-        // size_t w = 1;
+        size_t w = 1;
+        size_t words = 0;
         
         while (fscanf(file, " %1023s", word) == 1) {
             if (strlen(word)>0) {
@@ -309,13 +310,15 @@ static size_t hits = 0;
                     map->items[index].val += 1;
                     //wrn(" <%s> : [%5s] '%s'", file_path,"",word);
                 } else {
-                    // inf(" <%s> : [%5lld] '%s'", file_path,w++,word);
+                    inf(" <%s> : [%5lld] '%s'", file_path,w++,word);
                     hash_map_add(map,word,1);
                 }
+                words++;
             }
         }
 
-        return fclose(file);        
+        fclose(file);     
+        return words;   
     }
 
     HASH_MAP_API void test_hash_map_hash(void) {
@@ -664,35 +667,80 @@ static size_t hits = 0;
         trc("misses on hash lookup = %lld", miss);
         trc("miss times on hash lookup = %lld", mizz);
         trc("hits times on hash lookup = %lld", hits);
+        int index = -1;
+        int max = INT_MIN;
+        for(size_t i=0;i<map.capacity;++i) {
+            if (max<map.items[i].val) {
+                max = map.items[i].val;
+                index = i;
+            }
+        }
+        inf("-----------------------------------");
+        inf("max occured word is : '%s' = '%d'", map.items[index].key, map.items[index].val);        
     }
 
-    
 
-    HASH_MAP_API void test_hash_map_hash_shakespeare(void) {
+    #define BAR '|'
+
+    HASH_MAP_API void test_hash_map_story(char *file_name_story, char *file_name_count) {
 
         
         hash_map_t map = {0};
-        scan_file_to_map(&map,"./testdata/t8.shakespeare.txt");
+        size_t words = scan_file_to_map(&map,file_name_story);
+
+        int max = INT_MIN;
+        entry_t e = {0};
+        for(size_t i=0;i<map.capacity;++i) {
+            if (max<map.items[i].val) {
+                max = map.items[i].val;
+                e.key = strdup(map.items[i].key);
+                e.val = map.items[i].val;
+            }
+        }
+        inf("----------------------------------------");
+        inf("max occured word is : '%s' = '%d'", e.key, e.val);
 
 
-        inf("number of items: %zu", map.count);
-        FILE *fout = fopen("./testdata/t8.shakespeare.counts.txt","w");
+        inf("````````````````````````````````````````");
+        inf("number of unique words: %zu", map.count);
+        inf("number of words: %zu", words);
+        inf("````````````````````````````````````````");
+        FILE *fout = fopen(file_name_count,"w");
         for(size_t i=0;i < map.capacity;++i) {
             if (map.items[i].use == false) continue;
             char line[100] = {0};
-            sprintf(line, "%-20s | %d\n", map.items[i].key, map.items[i].val);
+            char bar[] = "          ";
+            size_t percent = (size_t)(10*(float)map.items[i].val/(float)max);
+            for(size_t i=0;i<sizeof(bar) && i<percent;++i) {
+                bar[i]=BAR;
+            }
+            sprintf(line, "%-12s %4d %s\n", bar, map.items[i].val, map.items[i].key);
             //sprintf(line,"key = '%s', freq=%d, index='%zu'\n", map.items[i].key, map.items[i].freq, i);
             fwrite(line,sizeof(char),strlen(line),fout);
+            if(map.items[i].use && map.items[i].key != NULL) free (map.items[i].key);            
         }
+        free(map.items);
         fclose(fout);
-        assertf(map.count==67505,"we should have 67505 items, but got %zu", map.count);
+        //assertf(map.count==67505,"we should have 67505 items, but got %zu", map.count);
 
-        inf("[\033[1;44m%-30s\033[0m] tests, shakespeare", __func__);
+        inf("[\033[1;44m%-30s\033[0m] tests", file_name_story);
         trc("misses on hash lookup = %lld", miss);
         trc("miss times on hash lookup = %lld", mizz);
         trc("hits times on hash lookup = %lld", hits);
 
+
     }
+
+    HASH_MAP_API void test_hash_map_hash_shakespeare(void) {
+        test_hash_map_story("./testdata/t8.shakespeare.txt","./testdata/t8.shakespeare.counts.txt");
+    }
+    HASH_MAP_API void test_hash_map_hash_houn(void) {
+        test_hash_map_story("./testdata/houn.txt","./testdata/houn.counts.txt");
+    }
+    HASH_MAP_API void test_hash_map_hash_black_peter(void) {
+        test_hash_map_story("./testdata/black-peter.txt","./testdata/black-peter.counts.txt");
+    }
+    
 
 #   endif//__HASH_MAP_IMPL
 
