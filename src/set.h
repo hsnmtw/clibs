@@ -44,6 +44,15 @@
 #   ifndef __SET_IMPL
 #   define __SET_IMPL
 
+    SET_API void set_init(set_t *arr) {
+        size_t size = sizeof(char*)*(DYN_ARR_INC_SIZE);
+        char **items = (char**)malloc(size); 
+        memset(items,0,size);
+        arr->capacity = DYN_ARR_INC_SIZE;
+        arr->hashes = (uint32_t*)malloc(sizeof(uint32_t)*(arr->capacity));
+
+    }
+
     SET_API bool set_contains(set_t *set, char *value) {
         if (set == NULL || value == NULL || set->items == NULL || set->hashes == NULL) return false;
         uint32_t hash = hash_map_hash(value);
@@ -55,25 +64,13 @@
 
     SET_API void set_append(set_t *set, char *value) {
         if (set == NULL || value == NULL) return;
+        if (set->items == NULL || set->hashes==NULL) set_init(set);
         if (set_contains(set,value)) return;
-        if (set->count >= set->capacity) {
-            size_t size = sizeof(char*)*(set->count+SET_INC_SIZE);
-            char **items = (char**)malloc(size); 
-            if (set->hashes != NULL) {
-                free(set->hashes);
-            }
-            set->hashes = (uint32_t*)malloc(sizeof(uint32_t)*(set->capacity+SET_INC_SIZE));
-            memset(items,0,size);
-            if (set->items != NULL) {
-                for(size_t i=0;i<set->capacity;++i) {
-                    if (set->items[i] == NULL) continue;
-                    items[i] = strdup(set->items[i]);
-                    set->hashes[i] = hash_map_hash(items[i]);
-                    free(set->items[i]);
-                }
-                free(set->items);
-            }
-            set->items = items;
+        if (set->count+1 >= set->capacity) {
+            set->items = (char**)realloc(set->items,sizeof(char*)*(set->capacity+SET_INC_SIZE)); 
+            set->hashes = (uint32_t*)realloc(set->hashes,sizeof(uint32_t)*(set->capacity+SET_INC_SIZE));
+            memset(set->items+set->count,0,sizeof(char*)*(SET_INC_SIZE));
+            memset(set->hashes+set->count,0,sizeof(uint32_t)*(SET_INC_SIZE));
             set->capacity += SET_INC_SIZE;
         }
         set->hashes[set->count] = hash_map_hash(value);

@@ -46,6 +46,8 @@ static size_t mizz = 0;
     // if key is unavailable, returns newly empty item index
     HASH_MAP_API int  hash_map_index(hash_map_t *map, const char *key);
 
+    HASH_MAP_API void hash_map_init(hash_map_t *map);
+
     // if the entries set is NULL or count == 0 or capacity == 0, resize, and make capacity doubled
     // after every add, the count is incremented
     // side effects: 
@@ -100,39 +102,40 @@ static size_t mizz = 0;
         // return (uint32_t) (sum < 0 ? -sum : sum) % HASH_FACTOR;
     }
 
+    HASH_MAP_API void hash_map_init(hash_map_t *map) {
+        size_t n = map->capacity;
+        if (n<1) n = MAP_INCREMENT_SIZE;
+        entry_t *items = (entry_t*)malloc(sizeof(entry_t)*n);
+        memset(items,0,sizeof(entry_t)*n);
+        if (map->items != NULL) {
+            for(size_t i=0;i<n;++i) {
+                if (map->items[i].key == NULL) continue;
+                free(map->items[i].key);
+            }
+            memset(map->items,0,sizeof(entry_t)*n);
+            free(map->items);
+        }
+        map->items = items;
+        map->capacity = n;
+        map->count = 0;
+    }
+
     HASH_MAP_API void hash_map_add(hash_map_t *map, const char *key, const int val) {
         assertf(map != NULL, " hash map is null ");
         assertf(key != NULL || strcmp(key, "")==0, " the key cannot be NULL or empty ");
         //todo("%s",__func__);
-        if (map->items == NULL || map->items == 0 || map->capacity < 1 || map->count + 1 >= map->capacity) {
-            
-            if (map->items == NULL              ) dbg(" map->items == NULL ");
-            if (map->items == 0                 ) dbg(" map->items == 0 ");
-            if (map->capacity < 1               ) dbg(" map->capacity < 1 ");
-            if (map->count + 1 >= map->capacity ) dbg(" map->count + 1 >= map->capacity ");
-
-            dbg("expand ... %zu -- %zu || %d", map->count, map->capacity, map->count + 1 >= map->capacity);
-            
+        if (map->items == NULL              ) hash_map_init(map);
+        if (map->count + 1 >= map->capacity) {            
+            dbg("expand ... %zu -- %zu || %d", map->count, map->capacity, map->count + 1 >= map->capacity);            
             size_t n = map->capacity + MAP_INCREMENT_SIZE;
-            entry_t *items = (entry_t*)malloc(sizeof(entry_t)*n);
-            hash_map_t nmap = { .items = items, .count = map->count, .capacity = n };
-            memset(items,0,sizeof(entry_t)*n);
-            size_t c=0;
-            if (map->items != NULL) {
-                for(size_t i=0;i<map->capacity;++i) {
-                    if (map->items[i].key==NULL) continue;
-                    items[hash_map_index(&nmap,map->items[i].key)] = map->items[i];//(entry_t) {strdup(map->items[i].key), map->items[i].val};
-                    // items[i] = map->items[i];//(entry_t) {strdup(map->items[i].key), map->items[i].val};
-                    c += 1;
-                }
-                free(map->items);
-            }
+            map->items = (entry_t*)realloc(map->items,sizeof(entry_t)*n);
+            //hash_map_t nmap = { .items = items, .count = map->count, .capacity = n };
+            memset(map->items+map->capacity,0,sizeof(entry_t)*MAP_INCREMENT_SIZE);
             map->capacity = n;
-            assertf(map->count == c, "count is not same %zu // %zu", map->count, c);
-            map->items = items;
         }
 
         int index = hash_map_index(map, key);
+        
         assertf (index>-1 && index < (int)map->capacity,"index=%d , count = %zu, capacity = %zu", index, map->count, map->capacity)
         assertf (map->items[index].key == NULL || strcmp(map->items[index].key, key) == 0, "expect item at index %d to be NULL or of key = `%s`", index, key );
         assertf (map->capacity > 0, "map capacity must be more than zero");
@@ -217,10 +220,11 @@ static size_t mizz = 0;
     }
 
     #define BUFF_LEN 4096
+    #define BUFF_LEN2 5500000
 
     HASH_MAP_API void test_hash_map_hash(void) {
 
-        FILE *file = fopen("./AbigailsTale.txt", "r");
+        FILE *file = fopen("./testdata/AbigailsTale.txt", "r");
         if (file == NULL) {
             err("failed to open file ... 1");
             fclose(file);
@@ -281,7 +285,7 @@ static size_t mizz = 0;
         }
 
         inf("number of items: %zu", map.count);
-        FILE *fout = fopen("./tale.txt","w");
+        FILE *fout = fopen("./testdata/tale.txt","w");
         for(size_t i=0;i < map.capacity;++i) {
             if (map.items[i].key == NULL) continue;
             char line[100] = {0};
@@ -618,6 +622,62 @@ static size_t mizz = 0;
         }
 
         inf("[\033[1;44m%-30s\033[0m] tests, all = %d --- success = %d", __func__, all, success);
+        trc("misses on hash lookup = %lld", miss);
+        trc("miss times on hash lookup = %lld", mizz);
+
+    }
+
+
+    HASH_MAP_API void test_hash_map_hash_shakespeare(void) {
+
+        FILE *file = fopen("./testdata/t8.shakespeare.txt", "r");
+        if (file == NULL) {
+            err("[t8.shakespeare] failed to open file ... 1");
+            fclose(file);
+            return;
+        }
+        char buffer[1] = {0};
+        char word[100];// = (char*)malloc(sizeof(char)*100);
+        // memset(word,0,sizeof(char)*100);
+        size_t r;
+        size_t i;
+        //size_t w=1;
+        hash_map_t map = {0};
+        hash_map_init(&map);
+        while ((r = fread(buffer,sizeof(char),1,file)) > 0) {
+            if (isspace(buffer[0]) || i>=100) {
+                if (strlen(word)>0) {
+                    int index = hash_map_index(&map,word);
+                    if (!(map.items[index].key == NULL || strcmp(map.items[index].key, word) != 0)) {
+                        map.items[index].val += 1;
+                    } else {
+                        //inf(" shakespeare : [%04lld] '%s'",w++,word);
+                        hash_map_add(&map,word,1);
+                    }
+                }
+                for(i=0;i<100;++i) word[i] = 0;
+                i=0;
+                continue;
+            }
+            word[i++] = buffer[0];
+        }
+        // free(word);
+        fclose(file);
+
+
+        inf("number of items: %zu", map.count);
+        FILE *fout = fopen("./testdata/t8.shakespeare.counts.txt","w");
+        for(size_t i=0;i < map.capacity;++i) {
+            if (map.items[i].key == NULL) continue;
+            char line[100] = {0};
+            sprintf(line, "%-20s | %d\n", map.items[i].key, map.items[i].val);
+            //sprintf(line,"key = '%s', freq=%d, index='%zu'\n", map.items[i].key, map.items[i].freq, i);
+            fwrite(line,sizeof(char),strlen(line),fout);
+        }
+        fclose(fout);
+        assertf(map.count==67506,"we should have 308 items, but got %zu", map.count);
+
+        inf("[\033[1;44m%-30s\033[0m] tests, shakespeare", __func__);
         trc("misses on hash lookup = %lld", miss);
         trc("miss times on hash lookup = %lld", mizz);
 

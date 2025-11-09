@@ -40,6 +40,7 @@ int main(void) {
     test_date_h_dates_2();
 
     test_hash_map_hash();
+    test_hash_map_hash_shakespeare();
 
     assertf(hash_map_hash("abc") != hash_map_hash("abC"), "abc != abC");
     assertf(hash_map_hash("aBc") != hash_map_hash("abc"), "aBc != abc");

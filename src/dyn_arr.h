@@ -26,6 +26,7 @@
         size_t capacity;
     } dyn_arr_t;
 
+    DYN_ARR_API void dyn_arr_init(dyn_arr_t *arr);
     DYN_ARR_API void dyn_arr_append(dyn_arr_t *arr, char *value);
     DYN_ARR_API bool dyn_arr_contains(dyn_arr_t *dyn_arr, char *value);
     DYN_ARR_API char *dyn_arr_get(dyn_arr_t *arr, size_t index);
@@ -42,21 +43,19 @@
 #   ifndef __DYN_ARR_IMPL
 #   define __DYN_ARR_IMPL
 
+    DYN_ARR_API void dyn_arr_init(dyn_arr_t *arr) {
+        size_t size = sizeof(char*)*(DYN_ARR_INC_SIZE);
+        char **items = (char**)malloc(size); 
+        memset(items,0,size);
+        arr->capacity = DYN_ARR_INC_SIZE;
+    }
+
     DYN_ARR_API void dyn_arr_append(dyn_arr_t *arr, char *value) {
         if (arr == NULL || value == NULL) return;
-        if (arr->count >= arr->capacity) {
-            size_t size = sizeof(char*)*(arr->count+DYN_ARR_INC_SIZE);
-            char **items = (char**)malloc(size); 
-            memset(items,0,size);
-            if (arr->items != NULL) {
-                for(size_t i=0;i<arr->capacity;++i) {
-                    if (arr->items[i] == NULL) continue;
-                    items[i] = strdup(arr->items[i]);
-                    free(arr->items[i]);
-                }
-                free(arr->items);
-            }
-            arr->items = items;
+        if (arr->items == NULL) dyn_arr_init(arr);
+        if (arr->count+1 >= arr->capacity) {
+            arr->items = (char**)realloc(arr->items,sizeof(char*)*(arr->capacity+DYN_ARR_INC_SIZE)); 
+            memset(arr->items+arr->count,0,sizeof(char*)*(DYN_ARR_INC_SIZE));
             arr->capacity += DYN_ARR_INC_SIZE;
         }
         arr->items[arr->count++] = strdup(value);
