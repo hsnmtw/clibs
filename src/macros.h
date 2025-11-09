@@ -32,6 +32,9 @@
 #define todo(f,...) fprintf(stdout,"\033[1;44m[TODO]\033[0m [file: %s, line %lld] : "f"\n",__FILE__,__LINE__,##__VA_ARGS__);
 #endif//todo
 
+#ifndef mreset
+#define mreset(target) memset(target,0,sizeof(target))
+#endif//mreset
 
 #ifndef ARRAY_LEN
 #define ARRAY_LEN(a) sizeof(a)/sizeof(a[0])

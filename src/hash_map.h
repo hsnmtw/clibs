@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
-// #include <math.h>
+#include <math.h>
 #include "macros.h"
 
 #pragma once
@@ -19,6 +19,7 @@
 
 static size_t miss = 0;
 static size_t mizz = 0;
+static size_t hits = 0;
 
 //
 // --------------------------------------------------------------------
@@ -28,6 +29,7 @@ static size_t mizz = 0;
     typedef struct {
         char *key;
         int   val;
+        bool  use;
     } entry_t;
 
     typedef struct {
@@ -81,13 +83,14 @@ static size_t mizz = 0;
 #   define __HASH_MAP_IMPL
 
     #define HASH_FACTOR 391993711
-    //#define PRIMES_LEN 20
-    //const uint32_t primes[] = {
-    //    2, 3, 5, 7, 11, 13, 17, 
-    //    19, 23, 29, 31, 37, 41, 
-    //    43, 47, 53, 59, 61, 67, 
-    //    71, 73,	//79,	83,	89,	97,
-    //};
+    #define PRIMES_LEN 35
+    const uint32_t primes[] = {
+       2, 3, 5, 7, 11, 13, 17, 
+       19, 23, 29, 31, 37, 41, 
+       43, 47, 53, 59, 61, 67, 
+       71, 73,	1,  4,  6,  8, 
+        9, 10, 12, 14, 16, 18 
+    };
 
     HASH_MAP_API uint32_t hash_map_hash(const char *text) {
         if (text == NULL) return INT_MIN;
@@ -95,8 +98,8 @@ static size_t mizz = 0;
         uint32_t hash = 59617;
         // long long sum = 0;
         for(size_t i=0;i<n;++i) {
-            // sum += pow(primes[((uint32_t)text[i])%PRIMES_LEN],(n-i));
-            hash = ((hash << 5) + hash) + (uint32_t)text[i]; /* hash * 33 + c */
+            // hash += pow(primes[((uint32_t)text[i])%PRIMES_LEN],(n-i));
+            hash = ((hash << 6) + hash) + (uint32_t)text[i]; /* hash * 33 + c */
         }
         return hash;
         // return (uint32_t) (sum < 0 ? -sum : sum) % HASH_FACTOR;
@@ -109,7 +112,7 @@ static size_t mizz = 0;
         memset(items,0,sizeof(entry_t)*n);
         if (map->items != NULL) {
             for(size_t i=0;i<n;++i) {
-                if (map->items[i].key == NULL) continue;
+                if (map->items[i].use == false) continue;
                 free(map->items[i].key);
             }
             memset(map->items,0,sizeof(entry_t)*n);
@@ -125,23 +128,36 @@ static size_t mizz = 0;
         assertf(key != NULL || strcmp(key, "")==0, " the key cannot be NULL or empty ");
         //todo("%s",__func__);
         if (map->items == NULL              ) hash_map_init(map);
-        if (map->count + 1 >= map->capacity) {            
-            dbg("expand ... %zu -- %zu || %d", map->count, map->capacity, map->count + 1 >= map->capacity);            
+        if (map->count + 1 >= map->capacity && map->items != NULL) {            
+            // inf("expand ... %zu -- %zu || %d", map->count, map->capacity, map->count + 1 >= map->capacity);            
             size_t n = map->capacity + MAP_INCREMENT_SIZE;
-            map->items = (entry_t*)realloc(map->items,sizeof(entry_t)*n);
-            //hash_map_t nmap = { .items = items, .count = map->count, .capacity = n };
-            memset(map->items+map->capacity,0,sizeof(entry_t)*MAP_INCREMENT_SIZE);
+            entry_t *items = (entry_t*)malloc(sizeof(entry_t)*n);
+            memset(items,0,sizeof(entry_t)*n);
+            size_t c = 0;
+            for(size_t i=0;i<map->capacity;++i) {
+                entry_t e = map->items[i];
+                if (e.use == false) continue;
+                uint32_t index = hash_map_hash(e.key);
+                while(items[index % n].use) index++;
+                items[index % n] = e;
+                c++;
+            }
+            assert(c == map->count);
+            // inf("count = %lld , c= %d", map->count, c);
+            free(map->items);
+            map->items = items;
             map->capacity = n;
+            map->count = c;
         }
 
         int index = hash_map_index(map, key);
         
         assertf (index>-1 && index < (int)map->capacity,"index=%d , count = %zu, capacity = %zu", index, map->count, map->capacity)
-        assertf (map->items[index].key == NULL || strcmp(map->items[index].key, key) == 0, "expect item at index %d to be NULL or of key = `%s`", index, key );
+        assertf (map->items[index].use == false || strcmp(map->items[index].key, key) == 0, "expect item at index %d to be NULL or of key = `%s`", index, key );
         assertf (map->capacity > 0, "map capacity must be more than zero");
         assertf (map->count < map->capacity, "map count must be non-negative");
         // assertf (index >=0 && index < (int)map->capacity, " index must be between [%d,%d] , the given value was %d", 0, (int)map->capacity, index);
-        map->items[index] = (entry_t) {strdup(key),val};
+        map->items[index] = (entry_t) {strdup(key),val, true};
         dbg ("%-13s : %d", key, index);
         map->count += 1;
         dbg("count = %zu,, cap=%zu", map->count, map->capacity);
@@ -156,6 +172,7 @@ static size_t mizz = 0;
     }
     
     HASH_MAP_API int  hash_map_index(hash_map_t *map, const char *key) {
+        hits++;
         assertf (map != NULL                         , " hash map is null ");
         assertf (map->items != NULL                  , " hash map items is null ");        
         assertf (map->capacity > 0                   , " capacity [%zu] is less than 1, count=%zu", map->capacity, map->count);
@@ -181,8 +198,8 @@ static size_t mizz = 0;
         
         u=index,d=index+1;
         for ( int i=0; i < n && (u>-1 || d<n); ++i ) {
-            if (u>-1 && map->items[u].key == NULL) return u;
-            if (d<n  && map->items[d].key == NULL) return d;
+            if (u>-1 && map->items[u].use == false) return u;
+            if (d<n  && map->items[d].use == false) return d;
             u--;
             d++;
             miss++;
@@ -249,7 +266,7 @@ static size_t mizz = 0;
                         word[i++] = buffer[b];
                     if (strlen(word)>0) {
                         int index = hash_map_index(map,word);
-                        if (!(map->items[index].key == NULL || strcmp(map->items[index].key, word) != 0)) {
+                        if (!(map->items[index].use == false || strcmp(map->items[index].key, word) != 0)) {
                             map->items[index].val += 1;
                             wrn(" <%s> : [%5s] '%s'", file_path,"",word);
                         } else {
@@ -269,15 +286,47 @@ static size_t mizz = 0;
         return fclose(file);        
     }
 
+    #define MAX_WORD_LENGTH 1023
+
+    int scan_file_to_map(hash_map_t *map, char *file_path) {
+
+        hash_map_init(map);
+
+        FILE *file = fopen(file_path, "r");
+        if (file == NULL) {
+            err("[%s] failed to open file ... 1", file_path);
+            fclose(file);
+            return 1;
+        }
+
+        char word[MAX_WORD_LENGTH] = {0};
+        // size_t w = 1;
+        
+        while (fscanf(file, " %1023s", word) == 1) {
+            if (strlen(word)>0) {
+                int index = hash_map_index(map,word);
+                if (!(map->items[index].use == false || strcmp(map->items[index].key, word) != 0)) {
+                    map->items[index].val += 1;
+                    //wrn(" <%s> : [%5s] '%s'", file_path,"",word);
+                } else {
+                    // inf(" <%s> : [%5lld] '%s'", file_path,w++,word);
+                    hash_map_add(map,word,1);
+                }
+            }
+        }
+
+        return fclose(file);        
+    }
+
     HASH_MAP_API void test_hash_map_hash(void) {
 
         hash_map_t map = {0};
-        read_file_to_map(&map,"./testdata/AbigailsTale.txt");
+        scan_file_to_map(&map,"./testdata/AbigailsTale.txt");
         
         inf("number of items: %zu", map.count);
         FILE *fout = fopen("./testdata/tale.txt","w");
         for(size_t i=0;i < map.capacity;++i) {
-            if (map.items[i].key == NULL) continue;
+            if (map.items[i].use == false) continue;
             char line[100] = {0};
             sprintf(line, "%-20s | %d\n", map.items[i].key, map.items[i].val);
             //sprintf(line,"key = '%s', freq=%d, index='%zu'\n", map.items[i].key, map.items[i].freq, i);
@@ -614,7 +663,7 @@ static size_t mizz = 0;
         inf("[\033[1;44m%-30s\033[0m] tests, all = %d --- success = %d", __func__, all, success);
         trc("misses on hash lookup = %lld", miss);
         trc("miss times on hash lookup = %lld", mizz);
-
+        trc("hits times on hash lookup = %lld", hits);
     }
 
     
@@ -623,24 +672,25 @@ static size_t mizz = 0;
 
         
         hash_map_t map = {0};
-        read_file_to_map(&map,"./testdata/t8.shakespeare.txt");
+        scan_file_to_map(&map,"./testdata/t8.shakespeare.txt");
 
 
         inf("number of items: %zu", map.count);
         FILE *fout = fopen("./testdata/t8.shakespeare.counts.txt","w");
         for(size_t i=0;i < map.capacity;++i) {
-            if (map.items[i].key == NULL) continue;
+            if (map.items[i].use == false) continue;
             char line[100] = {0};
             sprintf(line, "%-20s | %d\n", map.items[i].key, map.items[i].val);
             //sprintf(line,"key = '%s', freq=%d, index='%zu'\n", map.items[i].key, map.items[i].freq, i);
             fwrite(line,sizeof(char),strlen(line),fout);
         }
         fclose(fout);
-        assertf(map.count==67506,"we should have 67506 items, but got %zu", map.count);
+        assertf(map.count==67505,"we should have 67505 items, but got %zu", map.count);
 
         inf("[\033[1;44m%-30s\033[0m] tests, shakespeare", __func__);
         trc("misses on hash lookup = %lld", miss);
         trc("miss times on hash lookup = %lld", mizz);
+        trc("hits times on hash lookup = %lld", hits);
 
     }
 

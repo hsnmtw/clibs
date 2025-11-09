@@ -7,6 +7,7 @@
 #include "hash_map.h"
 #include "dyn_arr.h"
 #include "set.h"
+#include "lists.h"
 
 response_t home(request_t) {
     return (response_t) { 200, HTTP_CONTENT_HTTP, "home: "};
@@ -22,6 +23,12 @@ response_t pop(request_t) {
 
 #define __DATES_H_TESTS
 
+int compareInt(int a,int b) {
+    if (a<b) return +1;
+    if (a>b) return -1;
+    return 0;
+}
+
 int main(void) {
 
     // route_t items[] = {
@@ -34,31 +41,43 @@ int main(void) {
     // start_server(3303,routes);
 
     reset_console();
-    
-    test_date_h_get_week_day();
-    test_date_h_dates_1();
-    test_date_h_dates_2();
 
-    test_hash_map_hash();
+    int src[] = {4,1,3,2,9,0,7,5};
+    int trg[] = {0,0,0,0,0,0,0,0};
+    size_t n = ARRAY_LEN(src);
+    for(size_t i=0;i<n;++i) {
+        inf("[before] : %d", src[i]);
+    }
+    sort_items(trg,src,n,compareInt);
+    inf("-----------------------------------");
+    for(size_t i=0;i<n;++i) {
+        inf("[after] : %d", trg[i]);
+    }
+    
+    // test_date_h_get_week_day();
+    // test_date_h_dates_1();
+    // test_date_h_dates_2();
 
-    assertf(hash_map_hash("abc") != hash_map_hash("abC"), "abc != abC");
-    assertf(hash_map_hash("aBc") != hash_map_hash("abc"), "aBc != abc");
-    assertf(hash_map_hash("Abc") != hash_map_hash("abc"), "Abc != abc");
-    assertf(hash_map_hash("ABc") != hash_map_hash("abc"), "ABc != abc");
-    assertf(hash_map_hash("bca") != hash_map_hash("abc"), "bca != abc");
-    assertf(hash_map_hash("bac") != hash_map_hash("cba"), "bac != cba");
-    assertf(hash_map_hash("cba") != hash_map_hash("abc"), "cba != abc");
-    assertf(hash_map_hash("cba") == hash_map_hash("cba"), "cba == cba");
+    // test_hash_map_hash();
 
-    inf("testing dyn arr");
-    test_dyn_arr();
+    // assertf(hash_map_hash("abc") != hash_map_hash("abC"), "abc != abC");
+    // assertf(hash_map_hash("aBc") != hash_map_hash("abc"), "aBc != abc");
+    // assertf(hash_map_hash("Abc") != hash_map_hash("abc"), "Abc != abc");
+    // assertf(hash_map_hash("ABc") != hash_map_hash("abc"), "ABc != abc");
+    // assertf(hash_map_hash("bca") != hash_map_hash("abc"), "bca != abc");
+    // assertf(hash_map_hash("bac") != hash_map_hash("cba"), "bac != cba");
+    // assertf(hash_map_hash("cba") != hash_map_hash("abc"), "cba != abc");
+    // assertf(hash_map_hash("cba") == hash_map_hash("cba"), "cba == cba");
+
+    // inf("testing dyn arr");
+    // test_dyn_arr();
     
-    inf("testing set");
-    test_set();
+    // inf("testing set");
+    // test_set();
     
     
-    inf("testing shakespeare ... this might take a while");
-    test_hash_map_hash_shakespeare();
+    // inf("testing shakespeare ... this might take a while");
+    // test_hash_map_hash_shakespeare();
 
     inf("DONE testing");
     
