@@ -216,6 +216,7 @@ static size_t mizz = 0;
         return map->items[index].val;
     }
 
+    #define BUFF_LEN 4096
 
     HASH_MAP_API void test_hash_map_hash(void) {
 
@@ -225,7 +226,6 @@ static size_t mizz = 0;
             fclose(file);
             return;
         }
-        const size_t BUFF_LEN = 4096;
         char buffer[BUFF_LEN] = {0};
         size_t r;
         if ((r = fread(buffer,sizeof(char),BUFF_LEN,file)) < 1) {
