@@ -1,586 +1,609 @@
-||||||||||    478 the
-||||          234 and
+||||||||||    479 the
+||||          236 and
 ||||          232 of
+||||          213 I
 |||           189 a
-|||           183 I
-|||           170 was
+|||           171 was
+|||           153 that
 |||           152 to
-|||           149 that
-||            120 in
-||            109 he
+||            122 in
+||            120 he
+||            104 it
 ||            102 his
-|              85 had
-|              81 it
-|              79 you
+|              87 you
+|              86 had
+|              71 for
 |              70 with
-|              70 for
 |              64 have
 |              54 which
+|              53 Holmes
 |              52 at
 |              48 my
-               44 been
-               42 on
-               40 were
-               40 is
-               38 not
+               46 been
+               44 on
+               43 not
+               41 were
+               41 is
+               38 one
+               38 him
                37 from
-               36 He
+               37 He
+               36 this
+               36 It
                35 as
-               34 this
-               32 one
-               32 but
-               32 The
-               30 would
+               34 man
+               34 The
+               33 but
+               33 Hopkins
+               31 would
+               31 there
+               31 said
+               31 me
                30 some
-               29 said
-               29 "I
                28 we
+               28 all
+               28 Peter
+               27 no
                27 be
-               27 It
                26 upon
-               26 there
-               26 no
                25 an
-               25 Peter
-               24 him
                24 by
+               24 You
                23 when
                23 what
-               23 all
+               23 us
                22 could
+               22 Carey
                21 very
                21 out
-               20 me
-               20 Holmes
-               19 man
+               19 so
                19 are
                18 your
-               18 so
+               18 who
+               18 these
+               18 night
                18 can
-               17 who
-               17 us
+               17 time
+               17 Mr
                16 will
-               16 these
+               16 sir
                16 our
                16 if
+               16 down
+               16 do
                16 came
-               16 Mr.
-               15 down
+               15 them
+               15 hut
                15 about
-               15 "You
                14 should
+               14 last
                14 has
-               14 do
-               14 Holmes.
+               14 before
+               14 There
                13 two
+               13 say
                13 must
                13 into
+               13 here
                13 first
-               13 before
+               13 face
+               13 Well
                13 Stanley
-               13 Hopkins,
-               13 Hopkins
-               12 time
+               13 No
                12 or
+               12 more
+               12 long
+               12 case
+               12 What
+               11 securities
+               11 room
                11 only
-               11 last
-               11 it.
                11 heard
                11 found
                11 any
                11 am
-               11 There
-               11 Holmes,
+               11 Watson
                10 young
-               10 them
+               10 through
+               10 think
                10 see
                10 never
                10 may
-               10 long
                10 did
-               10 Carey
-                9 through
-                9 securities
-                9 night
+               10 crime
+               10 asked
+               10 Yes
+               10 We
+                9 years
+                9 well
+                9 way
+                9 up
+                9 taken
+                9 over
+                9 other
+                9 now
+                9 nothing
                 9 made
+                9 little
                 9 find
-                9 You
-                9 We
+                9 door
+                9 cabin
+                9 Neligan
+                9 London
                 9 Captain
-                9 "It
                 8 thought
-                8 think
-                8 say
-                8 over
-                8 other
+                8 tell
+                8 table
                 8 most
-                8 more
-                8 man,
                 8 like
+                8 know
                 8 initials
-                8 him.
-                8 he.
+                8 harpoon
+                8 hand
                 8 get
-                8 face
-                8 asked
+                8 friend
+                8 father
+                8 eyes
+                8 dead
+                8 come
+                8 This
+                8 Then
                 8 His
+                8 But
                 8 Black
-                7 years
-                7 up
+                8 And
+                7 window
                 7 took
                 7 they
-                7 room
+                7 seaman
+                7 round
                 7 own
+                7 outside
                 7 old
-                7 now
-                7 little
+                7 name
                 7 how
-                7 here
+                7 himself
+                7 head
                 7 great
                 7 give
-                7 friend
                 7 every
-                7 door
-                7 come
-                7 case
-                7 Watson,
+                7 book
+                7 again
+                7 Unicorn
                 7 Sea
                 7 In
-                7 Carey,
-                7 "Well,
+                7 If
                 6 yet
                 6 where
-                6 way
-                6 tell
                 6 small
-                6 sir,
                 6 saw
-                6 nothing
+                6 pocket
+                6 person
+                6 open
+                6 once
+                6 notebook
+                6 none
                 6 might
-                6 me,
-                6 man.
                 6 make
                 6 look
-                6 hut,
+                6 investigation
+                6 inquest
                 6 her
-                6 harpoon
+                6 gave
                 6 few
-                6 father
-                6 eyes
-                6 dead
+                6 end
+                6 done
                 6 called
+                6 box
+                6 back
                 6 among
-                6 This
-                6 Neligan
-                6 But
-                6 "Yes,
-                6 "What
+                6 On
+                6 Have
+                5 year
                 5 whose
                 5 went
-                5 well
+                5 wall
+                5 village
+                5 understand
                 5 tried
+                5 told
                 5 three
                 5 text
-                5 taken
+                5 ten
+                5 struck
                 5 stood
                 5 spent
-                5 sir.
+                5 side
+                5 ship
                 5 she
                 5 shall
                 5 seen
                 5 rum
-                5 round
                 5 put
-                5 person
-                5 outside
-                5 once
-                5 night,
                 5 next
                 5 myself
-                5 man's
+                5 murderer
+                5 mans
                 5 lost
                 5 looked
+                5 light
                 5 known
                 5 knew
                 5 just
-                5 it,
-                5 hut
-                5 him,
-                5 head
+                5 house
                 5 got
-                5 gave
-                5 crime
+                5 enough
+                5 direction
+                5 days
+                5 coming
                 5 brought
-                5 What
-                5 Unicorn,
-                5 Then
-                5 London
-                5 If
-                5 "No,
-                4 you,
+                5 breakfast
+                5 also
+                5 account
+                5 So
+                5 A
                 4 word
                 4 without
                 4 whole
-                4 understand
                 4 turned
                 4 trace
-                4 told
+                4 together
                 4 tin
                 4 those
+                4 thing
                 4 than
                 4 terror
                 4 terrible
-                4 ten
+                4 suppose
                 4 successful
-                4 struck
                 4 still
                 4 soon
-                4 sir."
-                4 ship.
+                4 shelf
                 4 several
                 4 seemed
                 4 second
-                4 seaman
                 4 sat
                 4 right
                 4 really
+                4 ready
                 4 place
+                4 pipe
+                4 past
                 4 part
                 4 order
                 4 off
-                4 none
-                4 name
+                4 morning
                 4 moment
+                4 middle
+                4 matter
+                4 logbooks
                 4 less
+                4 left
+                4 later
                 4 large
                 4 laid
-                4 know
                 4 its
-                4 it."
                 4 instant
+                4 inspector
                 4 imagine
-                4 hut.
-                4 however,
-                4 house,
-                4 himself
+                4 however
+                4 hour
                 4 high
                 4 hear
+                4 hands
                 4 force
                 4 fool
                 4 far
-                4 face.
+                4 fact
                 4 examined
+                4 evidence
+                4 ever
                 4 even
                 4 each
-                4 don't
+                4 drive
+                4 dont
+                4 died
                 4 death
                 4 dear
-                4 days
-                4 course,
+                4 daughter
+                4 cried
+                4 cover
+                4 course
+                4 committed
                 4 call
-                4 cabin.
+                4 bushes
                 4 both
-                4 book
+                4 better
                 4 being
-                4 back
-                4 also
-                4 again
+                4 beard
+                4 attention
+                4 alternative
+                4 age
                 4 after
-                4 account
-                4 Woodman's
-                4 Well,
-                4 That's
-                4 So
-                4 On
+                4 Woodmans
+                4 Was
+                4 Thats
+                4 Patrick
+                4 Now
+                4 My
+                4 Lee
                 4 Just
-                4 Hopkins.
-                4 Hopkins's
-                4 And
-                4 "And
+                4 However
+                4 Hopkinss
+                4 For
+                4 Dundee
+                4 Cairns
+                4 As
                 3 yell
-                3 year
                 3 yacht
-                3 window.
-                3 window
+                3 worn
                 3 white
                 3 while
+                3 weeks
                 3 week
+                3 weapon
+                3 water
+                3 want
                 3 walk
+                3 wait
+                3 visit
                 3 until
                 3 under
-                3 them.
+                3 trade
+                3 tobaccopouch
+                3 then
                 3 their
-                3 taken.
-                3 table
+                3 suggested
                 3 such
+                3 succession
                 3 strong
+                3 strength
                 3 start
                 3 spare
                 3 something
                 3 simple
                 3 sign
+                3 sight
                 3 showed
+                3 short
+                3 seachest
+                3 sea
                 3 scene
-                3 say.
                 3 save
                 3 savage
+                3 satisfied
                 3 sank
+                3 sake
+                3 road
                 3 returned
+                3 report
                 3 remember
-                3 ready
                 3 read
                 3 prove
                 3 prisoner
-                3 pocket.
-                3 past
-                3 open,
-                3 one.
+                3 presence
+                3 possible
+                3 positive
+                3 point
+                3 parts
+                3 opened
+                3 oclock
                 3 objects
-                3 o'clock
-                3 note-book
-                3 name?"
-                3 murderer
+                3 names
+                3 murder
                 3 much
-                3 more.
-                3 middle
+                3 month
+                3 methods
                 3 men
                 3 mean
-                3 me.
+                3 market
                 3 many
-                3 log-books
+                3 lock
                 3 line
-                3 light
-                3 left
+                3 life
                 3 lay
-                3 last,
-                3 know,
+                3 knife
                 3 killed
                 3 kept
-                3 investigation
                 3 inside
-                3 inquest
-                3 hour
-                3 himself,
-                3 here?"
+                3 hours
                 3 harpooners
-                3 hand.
-                3 hand
                 3 half
                 3 given
+                3 gentleman
+                3 full
+                3 formed
+                3 form
+                3 floor
+                3 fields
                 3 feet
                 3 fear
-                3 father's
+                3 fathers
                 3 famous
                 3 failed
-                3 fact
-                3 evidence
-                3 end.
-                3 drive
+                3 exercise
+                3 drink
                 3 drew
-                3 done
+                3 dressed
                 3 doing
+                3 disappeared
                 3 different
-                3 died
                 3 deep
-                3 daughter,
                 3 dare
                 3 dangerous
-                3 cover
+                3 creature
                 3 complete
-                3 coming
                 3 clue
                 3 certainly
-                3 cabin,
                 3 business
-                3 breakfast
-                3 box
+                3 bloodstain
                 3 between
-                3 beginning.
+                3 beginning
                 3 become
+                3 bearing
                 3 another
                 3 always
+                3 ago
                 3 absolute
                 3 able
                 3 When
-                3 Watson
-                3 Was
+                3 That
+                3 Street
+                3 Someone
                 3 Sherlock
-                3 Peter,
-                3 Patrick
+                3 Row
                 3 One
-                3 Mrs.
-                3 London,
-                3 Lee,
-                3 However,
-                3 Holmes;
-                3 Have
+                3 Mrs
+                3 JHN
+                3 Is
                 3 Forest
-                3 For
-                3 Carey.
+                3 Come
                 3 At
-                3 As
-                3 A
-                3 "Have
+                2 yours
                 2 yesterday
-                2 years,
                 2 written
                 2 wretched
-                2 worn
-                2 woods,
+                2 words
+                2 woods
+                2 within
                 2 windows
+                2 winced
+                2 wife
                 2 whom
                 2 whisky
-                2 well,
-                2 weeks
-                2 weapon
-                2 way,
-                2 water
+                2 whaler
                 2 watch
                 2 warranties
-                2 want
-                2 wall.
-                2 wall
                 2 walking
                 2 waiting
                 2 waited
+                2 wages
+                2 voyages
                 2 voices
                 2 visitor
-                2 visit
-                2 village,
-                2 village
+                2 vigil
                 2 view
-                2 us."
-                2 us,
-                2 up,
+                2 used
                 2 unusual
                 2 unable
+                2 twenty
+                2 turn
                 2 trying
+                2 try
+                2 true
                 2 triumphant
+                2 trial
+                2 trees
                 2 travelled
                 2 tragedy
-                2 trade
-                2 together
-                2 tobacco-pouch
+                2 tool
+                2 tomorrow
                 2 tobacco
-                2 to-morrow
-                2 time.
-                2 time,
-                2 think,
+                2 threshold
+                2 third
                 2 things
-                2 thing
                 2 therefore
-                2 there?"
-                2 there,
-                2 then
-                2 them,
-                2 tell.
                 2 teeth
-                2 table."
-                2 table.
+                2 taking
                 2 swore
                 2 surrounded
-                2 suppose?"
-                2 suppose
-                2 suggested
                 2 sudden
-                2 succession
-                2 struggle.
-                2 strength
+                2 struggle
+                2 stranger
                 2 step
                 2 steel
                 2 stealthy
                 2 steady
                 2 started
+                2 spirits
                 2 speak
                 2 southerly
                 2 somewhere
                 2 sold
                 2 snatched
+                2 smoked
                 2 slept
                 2 skipper
                 2 skill
                 2 single
                 2 since
-                2 sight
-                2 side.
-                2 side-table.
-                2 side
-                2 short
+                2 silence
+                2 sidetable
+                2 shoulder
                 2 shook
-                2 shelf,
+                2 sheath
+                2 sharp
                 2 shadow
                 2 sent
                 2 seldom
                 2 seems
                 2 seem
-                2 securities.
-                2 seaman,
-                2 sea-chest,
+                2 sealer
                 2 scientific
                 2 same
-                2 sake
-                2 said.
-                2 room.
-                2 road,
+                2 rose
+                2 rope
                 2 rising
                 2 revolver
                 2 return
-                2 retired.
+                2 retired
+                2 result
+                2 removed
                 2 remains
+                2 quiet
+                2 question
                 2 pupil
                 2 pulled
+                2 property
+                2 progress
                 2 problem
-                2 presence
-                2 possible
-                2 positive
+                2 prepared
+                2 pouch
+                2 points
                 2 pointed
-                2 pocket,
                 2 pinned
                 2 pig
                 2 picked
+                2 perhaps
                 2 perfectly
                 2 pay
                 2 paused
                 2 passed
-                2 parts
+                2 papers
                 2 paper
                 2 paid
                 2 pages
                 2 page
                 2 overboard
-                2 outside,
+                2 outhouse
                 2 others
-                2 opened
-                2 open
-                2 one,
-                2 on,
+                2 occurred
                 2 obtain
                 2 object
-                2 nothing."
-                2 note-book,
+                2 north
                 2 nocturnal
                 2 nights
                 2 new
+                2 needed
                 2 need
+                2 neck
                 2 near
-                2 names
                 2 named
                 2 mystery
                 2 murdered
-                2 murder.
                 2 moved
-                2 morning
-                2 month
-                2 methods
+                2 mother
+                2 miles
                 2 met
-                2 matter,
+                2 mentioned
+                2 master
                 2 making
                 2 low
                 2 lose
                 2 longer
-                2 long,
                 2 lived
-                2 life.
+                2 lists
+                2 liked
                 2 letters
                 2 let
                 2 led
@@ -588,219 +611,180 @@
                 2 leave
                 2 least
                 2 learn
-                2 knife
+                2 kind
                 2 key
-                2 it?"
-                2 investigation.
                 2 intense
-                2 inspector
-                2 inquest,
                 2 information
+                2 indeed
                 2 including
-                2 in.
+                2 identity
                 2 humble
                 2 huge
                 2 household
-                2 hours
+                2 hopes
+                2 hold
                 2 help
                 2 held
                 2 heels
-                2 head.
-                2 he,
+                2 heart
+                2 having
                 2 hardly
                 2 hard
-                2 hands
                 2 hair
                 2 guess
+                2 grounds
                 2 ground
                 2 good
                 2 go
                 2 glad
-                2 gentleman
-                2 full.
                 2 free
                 2 fortune
+                2 forms
                 2 formidable
-                2 formed
-                2 form
                 2 foot
                 2 following
                 2 flying
-                2 floor
+                2 flight
+                2 fled
                 2 fine
                 2 fierce
-                2 fields
+                2 fellow
                 2 feel
                 2 farther
                 2 fancy
                 2 extraordinary
                 2 express
                 2 expecting
-                2 exercise
                 2 excellent
                 2 examining
-                2 ever
+                2 evening
                 2 entered
-                2 enough,
-                2 enough
                 2 else
                 2 either
+                2 easy
                 2 during
                 2 drove
                 2 dropped
-                2 drink
-                2 dressed
                 2 drank
-                2 done,
+                2 doubt
                 2 discovered
-                2 disappeared
-                2 direction.
-                2 direction
+                2 detectives
+                2 detective
                 2 desire
                 2 deed
-                2 dead,
                 2 dark
                 2 curious
                 2 cry
                 2 criminal
-                2 crime.
-                2 cried.
-                2 cried
                 2 crew
+                2 country
+                2 corner
                 2 confess
-                2 committed
                 2 commanded
+                2 cold
                 2 coarse
+                2 client
                 2 click
                 2 clenched
-                2 cleared,
+                2 cleared
+                2 cheeks
                 2 cases
-                2 case."
-                2 case.
+                2 care
+                2 captain
                 2 cap
                 2 candle
-                2 bushes,
+                2 butchers
                 2 broke
                 2 brandy
-                2 box.
-                2 book,
+                2 board
                 2 blown
-                2 blood-stain
+                2 blow
+                2 blind
                 2 blade
-                2 better,
-                2 better
                 2 beside
                 2 behind
-                2 bearing
-                2 beard,
-                2 beard
+                2 beast
                 2 away
-                2 attention
                 2 assure
-                2 arm.
+                2 assault
+                2 arrest
+                2 arm
+                2 appeared
                 2 appear
                 2 anything
-                2 and,
-                2 amazement.
-                2 alternative
+                2 amazement
                 2 already
-                2 agony.
-                2 ago
-                2 age.
+                2 along
+                2 agony
                 2 against
+                2 admit
                 2 across
                 2 absorbed
                 2 above
-                2 Yes,
-                2 Then,
-                2 That
-                2 Street.
+                2 Wonderful
+                2 Why
+                2 They
+                2 Sussex
+                2 Surely
                 2 Stock
                 2 South
-                2 Row
+                2 See
+                2 PC
                 2 Only
-                2 No
-                2 My
+                2 Of
+                2 Not
+                2 Norway
                 2 Maybe
-                2 Is
+                2 Lord
+                2 Let
+                2 Lancaster
+                2 Its
+                2 Inspector
+                2 Ill
                 2 Hudson
-                2 Holmes,"
-                2 Holmes's
+                2 How
+                2 Hotel
+                2 Holmess
                 2 Here
                 2 Exchange
+                2 Excellent
+                2 Exactly
                 2 Even
+                2 Dear
                 2 Dawson
-                2 Come
-                2 Carey's
-                2 Cairns
+                2 Careys
+                2 CPR
                 2 Brambletye
-                2 Besides,
+                2 Besides
+                2 Basil
                 2 Baker
                 2 Arctic
                 2 After
-                2 1883
-                2 'P.C.'
-                2 'J.H.N.'
-                2 "Wonderful!"
-                2 "Why
-                2 "This
-                2 "They
-                2 "There
-                2 "The
-                2 "Someone
-                2 "On
-                2 "Now
-                2 "Not
-                2 "No;
-                2 "My
-                2 "If
-                2 "Dear
-                2 "But
-                2 "A
                 1 youth
-                1 yours.
-                1 yours,
-                1 you?"
-                1 you;
-                1 you.
-                1 you,"
-                1 yes,
-                1 year.
-                1 year,
+                1 yes
                 1 yarned
-                1 yarn."
+                1 yarn
                 1 yards
                 1 write
-                1 wrists,
-                1 would,
+                1 wrists
                 1 worse
-                1 worn,
-                1 worlds.
+                1 worlds
                 1 working
                 1 work
-                1 words.
-                1 words,
                 1 woodwork
-                1 wooden-walled,
+                1 woodenwalled
                 1 wooden
                 1 wood
                 1 wonder
                 1 women
-                1 woman,
-                1 within.
-                1 within
-                1 wit's
+                1 woman
+                1 wits
                 1 wish
-                1 wiser.
+                1 wiser
                 1 wiring
                 1 wire
                 1 winds
-                1 window,
-                1 winced.
-                1 winced
                 1 wild
-                1 wife,
-                1 wife
                 1 widow
                 1 widespread
                 1 why
@@ -808,167 +792,102 @@
                 1 whipped
                 1 whether
                 1 whatever
-                1 whaler.
-                1 whaler
                 1 whale
-                1 were.
-                1 well.
-                1 well,"
                 1 weight
-                1 week's
                 1 weather
-                1 weapon.
                 1 wealthy
+                1 weald
                 1 weak
                 1 wayside
-                1 way.
-                1 water,
                 1 watched
-                1 was.
-                1 warranty.
+                1 warranty
                 1 warrant
                 1 wanted
-                1 want,"
                 1 walls
-                1 wall,
                 1 walked
                 1 waits
-                1 wait.
-                1 wait,
-                1 wait
-                1 wages?"
-                1 wages,
-                1 voyages."
-                1 voyages
                 1 volume
                 1 voice
-                1 visit.
                 1 visibly
                 1 visible
                 1 violence
-                1 villagers,
-                1 village.
+                1 villagers
                 1 vile
-                1 vigil;
-                1 vigil,
                 1 views
-                1 vicar,
+                1 vicar
                 1 vessel
                 1 version
                 1 venture
                 1 various
-                1 variants.
+                1 variants
                 1 vanished
                 1 value
                 1 valuable
-                1 vain.
+                1 vain
                 1 vacant
-                1 utterly.
+                1 utterly
                 1 uttered
                 1 useful
-                1 used."
-                1 used
                 1 use
-                1 us?"
-                1 us.
                 1 urge
                 1 upwards
                 1 unworldly
-                1 unnecessary,
-                1 unlikely.
-                1 uniform.
-                1 unguarded?
+                1 unnecessary
+                1 unlikely
+                1 uniform
+                1 unguarded
                 1 understood
-                1 understand,
                 1 umbrella
                 1 twisted
-                1 twenty,
-                1 twenty
                 1 tweed
-                1 tut,
+                1 tut
                 1 turns
                 1 turning
-                1 turn,
-                1 turn
-                1 tufted,
+                1 tufted
                 1 tucked
-                1 try?"
-                1 try
-                1 truth.
+                1 truth
                 1 trusted
                 1 trust
-                1 true.
-                1 true
-                1 trouble.
+                1 trouble
                 1 trifling
-                1 trial."
-                1 trial,
                 1 trembled
-                1 trees.
-                1 trees
                 1 transfix
                 1 train
-                1 trade,
                 1 traces
                 1 traced
-                1 town,
+                1 town
                 1 towards
-                1 touched."
+                1 touched
                 1 torn
-                1 torment,
-                1 tool."
-                1 tool
+                1 torment
                 1 too
-                1 told,
-                1 together."
-                1 together.
-                1 tobacco-pouch,
-                1 tobacco--all
-                1 to-day.
+                1 today
+                1 tobaccoall
                 1 tip
-                1 times,
-                1 time;
+                1 times
                 1 tiger
-                1 ticks,
+                1 ticks
                 1 ticked
                 1 thrown
-                1 through.
                 1 thrill
-                1 threshold.
-                1 threshold
-                1 thoughts,
+                1 thoughts
                 1 thoroughly
                 1 thong
-                1 this?"
-                1 this.
                 1 thirty
                 1 thirsty
-                1 third.
-                1 third
-                1 thing?"
-                1 thing,"
-                1 thin,
+                1 thin
                 1 thigh
-                1 thick,
-                1 these?"
-                1 these.
-                1 there.
-                1 there's
+                1 thick
+                1 theres
                 1 theory
-                1 then,
                 1 themselves
-                1 that?"
-                1 that.
-                1 that,"
-                1 that,
-                1 that's
-                1 thanks,
+                1 thats
+                1 thanks
                 1 thank
                 1 terms
-                1 ten.
                 1 tempting
                 1 temple
-                1 temper.
+                1 temper
                 1 telegraph
                 1 task
                 1 tantalus
@@ -976,59 +895,49 @@
                 1 tampering
                 1 talks
                 1 talking
-                1 taking,
-                1 taking
-                1 taken."
-                1 table?"
-                1 sympathies,
+                1 sympathies
                 1 swung
                 1 swears
                 1 swear
                 1 swarthy
                 1 suspicions
                 1 suspect
-                1 surprised.
+                1 surprised
                 1 surprise
                 1 sure
                 1 sunlight
                 1 sunk
                 1 summoned
-                1 suit,
-                1 suggested.
-                1 suffer.
-                1 succession,
-                1 success.
-                1 succeeded;
+                1 suit
+                1 suffer
+                1 success
+                1 succeeded
                 1 stuck
-                1 struck,
                 1 strode
                 1 strict
-                1 strength,
-                1 stranger.
-                1 stranger
                 1 strange
                 1 stranded
-                1 straight-haired
-                1 story.
+                1 straighthaired
+                1 story
                 1 stormy
                 1 stooping
                 1 stooped
-                1 stonemason,
+                1 stonemason
                 1 stone
                 1 stole
                 1 stockholders
                 1 stock
                 1 stillness
-                1 sternly.
+                1 sternly
                 1 steps
                 1 steam
                 1 steal
-                1 station,
-                1 statement,"
+                1 station
+                1 statement
                 1 stated
-                1 starting-point
+                1 startingpoint
                 1 staring
-                1 stair,"
+                1 stair
                 1 stabbing
                 1 squeeze
                 1 square
@@ -1036,142 +945,109 @@
                 1 spot
                 1 splashing
                 1 spitting
-                1 spirits?
-                1 spirits
                 1 spirit
                 1 speechless
-                1 speech.
+                1 speech
                 1 special
                 1 spear
                 1 sovereign
                 1 sound
                 1 soul
-                1 sought.
-                1 sorry,
+                1 sought
+                1 sorry
                 1 sorrow
                 1 sometimes
                 1 someone
-                1 solve.
+                1 solve
                 1 solution
-                1 so,
                 1 snap
-                1 smoked,
-                1 smoked
                 1 smiled
                 1 smelt
                 1 slope
                 1 slip
                 1 slinking
                 1 slinging
-                1 sleep!
-                1 slaughter-house.
+                1 sleep
+                1 slaughterhouse
                 1 skulking
-                1 skin,
+                1 skin
                 1 sketch
                 1 sixty
                 1 sixteen
                 1 six
-                1 situation,
+                1 situation
                 1 sit
-                1 sir;
                 1 singular
-                1 single-roomed
+                1 singleroomed
                 1 simplest
-                1 silent,
-                1 silence,
-                1 silence
+                1 silent
                 1 signs
-                1 signifies."
-                1 significance,"
+                1 signifies
+                1 significance
                 1 sighted
-                1 sight.
+                1 sidewhiskers
                 1 sideways
                 1 sides
-                1 side-whiskers.
-                1 side,
-                1 shut.
+                1 shut
                 1 show
                 1 shout
-                1 shoulder.
-                1 shoulder
-                1 short,
                 1 shop
                 1 shivering
-                1 shirt-sleeves
+                1 shirtsleeves
+                1 ships
                 1 shipping
-                1 ship?"
-                1 ship's
                 1 shining
-                1 shingle-roofed,
-                1 shilling.
+                1 shingleroofed
+                1 shilling
                 1 shifted
-                1 shelves.
-                1 shelf.
-                1 shelf
+                1 shelves
                 1 sheets
-                1 sheath.
-                1 sheath-knife,
-                1 sheath
+                1 sheathknife
                 1 sheaf
-                1 sharp,
-                1 sharp
-                1 shares."
+                1 shares
                 1 shame
                 1 shaking
                 1 shake
                 1 seven
-                1 settled."
+                1 settled
                 1 settle
                 1 set
-                1 services.
+                1 services
                 1 serve
-                1 servants.
-                1 serenely.
+                1 servants
+                1 serenely
                 1 sequence
                 1 sense
                 1 send
                 1 seller
-                1 sell.
-                1 self-composure.
+                1 sell
+                1 selfcomposure
                 1 seized
-                1 seek."
+                1 seek
                 1 seeing
                 1 sections
                 1 seat
                 1 seas
-                1 searcher.
-                1 seaman."
-                1 sealer."
-                1 sealer
-                1 seal-skin--the
-                1 seal-skin--and
-                1 seal-skin
+                1 searcher
+                1 sealskinthe
+                1 sealskinand
+                1 sealskin
                 1 seal
-                1 sea.
-                1 sea-chest.
-                1 sea,
-                1 sea
-                1 screams.
+                1 screams
                 1 scratches
                 1 scraping
                 1 scrambled
                 1 scars
                 1 scandal
-                1 says,
-                1 say."
-                1 say,
+                1 says
                 1 saved
                 1 satisfy
-                1 satisfied."
-                1 satisfied.
-                1 satisfied
                 1 saluted
                 1 sallow
-                1 sake,
-                1 sailor-fashion,
+                1 sailorfashion
                 1 sailor
                 1 sailed
-                1 safety.
+                1 safety
                 1 rustle
                 1 rushed
                 1 running
@@ -1180,45 +1056,30 @@
                 1 ruined
                 1 ruddy
                 1 rouse
-                1 round.
-                1 round,
-                1 rough-looking
+                1 roughlooking
                 1 rough
-                1 rose,
-                1 rose
-                1 rope."
-                1 rope
-                1 room?"
-                1 room,
                 1 roofed
                 1 rolling
-                1 robbery?"
+                1 robbery
                 1 roamed
-                1 road
                 1 riveted
                 1 richer
-                1 ribston-pippin
+                1 ribstonpippin
                 1 reward
                 1 retaining
-                1 result."
-                1 result!"
                 1 rest
                 1 respect
                 1 resistance
                 1 reserved
                 1 research
-                1 rescue.
+                1 rescue
                 1 requires
-                1 report?"
-                1 report."
-                1 report
                 1 replaced
-                1 removed,
-                1 removed
                 1 remove
                 1 remonstrate
                 1 remarkable
                 1 remained
+                1 relit
                 1 relief
                 1 release
                 1 relating
@@ -1226,7 +1087,7 @@
                 1 refused
                 1 refuges
                 1 refers
-                1 red-rimmed
+                1 redrimmed
                 1 red
                 1 recover
                 1 record
@@ -1237,10 +1098,8 @@
                 1 reason
                 1 reappeared
                 1 realize
-                1 ready,"
                 1 reached
                 1 reach
-                1 re-lit,
                 1 ravaged
                 1 rather
                 1 rapidly
@@ -1250,13 +1109,9 @@
                 1 rail
                 1 rack
                 1 quite
-                1 quiet,
-                1 quiet
                 1 quickly
                 1 quick
-                1 questions.
-                1 question,
-                1 question
+                1 questions
                 1 quest
                 1 queerest
                 1 quarters
@@ -1264,289 +1119,178 @@
                 1 quarrelled
                 1 qualities
                 1 push
-                1 pursuing.
-                1 purpose.
-                1 public-house,
+                1 pursuing
+                1 purpose
+                1 publichouse
                 1 provided
                 1 provide
-                1 proves,
+                1 proves
                 1 proportion
-                1 property."
-                1 property
                 1 proof
-                1 progress?"
-                1 progress
                 1 profit
                 1 profile
                 1 professed
                 1 probably
-                1 probable.
+                1 probable
                 1 printed
                 1 price
-                1 prey.
+                1 prey
                 1 pretence
                 1 presumably
                 1 pressed
                 1 preserved
+                1 presentin
                 1 presented
-                1 present--in
                 1 present
-                1 presence.
-                1 prepared.
-                1 prepared
                 1 precedes
                 1 praying
                 1 practised
-                1 practice,
+                1 practice
                 1 powerful
                 1 poured
                 1 pounds
-                1 pouch,
-                1 pouch
-                1 possible,"
                 1 possibility
                 1 possession
-                1 positive,
                 1 position
                 1 poor
                 1 pool
-                1 police-station.
+                1 policestation
                 1 police
-                1 points,"
-                1 points
-                1 point?"
-                1 point,
-                1 point
-                1 pocket
                 1 playing
-                1 plague-spot
+                1 plaguespot
                 1 pitiable
-                1 pipe;
-                1 pipe."
-                1 pipe.
-                1 pipe
                 1 picture
                 1 pick
-                1 physical,
-                1 personality.
+                1 physical
+                1 personality
                 1 personal
-                1 person,
                 1 permitted
-                1 permissible.
-                1 perhaps,"
-                1 perhaps
+                1 permissible
                 1 perfect
-                1 penknife.
-                1 pen.
+                1 penknife
+                1 pen
                 1 patient
                 1 path
-                1 past.
-                1 parts.
                 1 particulars
                 1 particular
                 1 park
-                1 papers?"
-                1 papers
                 1 pallor
-                1 pale,
-                1 paint,
+                1 pale
+                1 paint
                 1 owner
                 1 owe
                 1 overpowered
-                1 overlook?"
+                1 overlook
                 1 overhung
-                1 over.
-                1 outhouse--he
-                1 outhouse,
-                1 outhouse
+                1 outhousehe
                 1 ourselves
                 1 ounce
-                1 others--the
-                1 other.
+                1 othersthe
                 1 original
-                1 ore.
+                1 ore
                 1 ordinary
                 1 opinion
-                1 opened.
-                1 open.
-                1 one,"
-                1 once?"
                 1 often
                 1 official
-                1 offices,
-                1 occurred.
-                1 occurred
+                1 offices
                 1 occupies
-                1 obvious?"
+                1 obvious
                 1 observed
                 1 obscure
                 1 obliged
                 1 numerous
-                1 numbers.
-                1 now.
-                1 now,
+                1 numbers
                 1 notorious
                 1 noticed
                 1 notice
-                1 nothing.
-                1 note-book.
-                1 not?"
-                1 not?
-                1 not."
-                1 not.
-                1 not,
-                1 north.
-                1 north,
-                1 none?"
-                1 none."
-                1 nobody's
+                1 nobodys
                 1 nobody
-                1 no,
-                1 nine-thirty.
-                1 night?"
-                1 night?
-                1 night."
-                1 night.
-                1 nerves,
-                1 neighbours,
-                1 needed.
-                1 needed
-                1 neck.
-                1 neck
+                1 ninethirty
+                1 nerves
+                1 neighbours
                 1 nearing
-                1 names.
                 1 muzzle
-                1 murderer.
-                1 murderer,
-                1 murder--stopped
-                1 murder
+                1 murderstopped
                 1 mouth
                 1 moustache
                 1 motive
-                1 mother.
-                1 mother
-                1 morning.--Basil.'
-                1 morning.
-                1 morning--two
-                1 morning,
-                1 more?"
-                1 moods,
+                1 morningtwo
+                1 morningBasil
+                1 moods
                 1 months
-                1 month."
                 1 money
                 1 modifies
-                1 mister,"
-                1 minutes."
+                1 mister
+                1 minutes
                 1 minute
-                1 mine,
-                1 mind."
-                1 million,
-                1 miles,
-                1 miles
-                1 middle.
+                1 mine
+                1 mind
+                1 million
                 1 midday
-                1 methods,
                 1 metallic
                 1 messages
                 1 merchantablity
-                1 mentioned?"
-                1 mentioned,
                 1 mention
                 1 mental
                 1 memorable
                 1 melancholy
                 1 meet
                 1 medium
-                1 me:
-                1 me!
-                1 matter."
-                1 matter
                 1 match
-                1 master.
-                1 master
                 1 masses
                 1 marks
-                1 market;
-                1 market.
-                1 market
                 1 marked
                 1 maps
+                1 manhandled
                 1 manage
-                1 man?"
-                1 man-handled
-                1 majority--were
+                1 majoritywere
                 1 maids
                 1 magnifying
                 1 lying
                 1 lurched
                 1 loud
-                1 log-books,
                 1 lodgings
-                1 lock,
-                1 lock!
-                1 lock
                 1 loathed
-                1 little.
-                1 little,
-                1 lists,
-                1 lists
                 1 listened
                 1 list
                 1 limited
-                1 limb.
-                1 liked.
-                1 liked
-                1 lights.
+                1 limb
+                1 lights
                 1 lighting
                 1 lightened
-                1 light.
-                1 light,
-                1 life
                 1 lies
                 1 letter
                 1 lesson
-                1 lens.
+                1 lens
                 1 lend
                 1 legs
                 1 legged
-                1 left.
                 1 leaving
                 1 leather
                 1 lease
                 1 leaned
                 1 leaf
                 1 law
-                1 laughter.
-                1 later."
-                1 later.
-                1 later,
-                1 later
+                1 laughter
                 1 lashed
                 1 lank
                 1 landsmen
-                1 landsman.
+                1 landsman
                 1 knows
                 1 knowledge
-                1 know.
-                1 knife,
-                1 knickerbockers,
-                1 kit."
-                1 kind,
-                1 kind
+                1 knickerbockers
+                1 kit
                 1 keeping
                 1 keenly
-                1 jury,
-                1 joy.
+                1 jury
+                1 joy
                 1 join
                 1 jacket
-                1 jackal,
-                1 it,"
+                1 jackal
                 1 issued
                 1 issue
-                1 is:
+                1 ironworks
                 1 ironical
-                1 iron-works
-                1 investigation."
                 1 investigated
                 1 invaders
                 1 introduction
@@ -1556,235 +1300,185 @@
                 1 intermittent
                 1 interior
                 1 interesting
-                1 interested.
+                1 interested
                 1 intently
                 1 intention
                 1 intensified
-                1 inspector;
-                1 inspector.
                 1 inquiry
                 1 inquiring
                 1 inquiries
                 1 inquired
-                1 inquire.
-                1 inquest.
-                1 innocent."
-                1 ingenuity.
+                1 inquire
+                1 innocent
+                1 ingenuity
                 1 infernal
                 1 inferences
                 1 inestimable
                 1 indiscretion
                 1 indirect
                 1 indication
-                1 indentation,
-                1 indeed,
-                1 indeed
+                1 indentation
                 1 incredible
                 1 increasing
                 1 incongruous
                 1 include
                 1 inclined
-                1 impossible.
+                1 impossible
                 1 important
                 1 importance
-                1 implied,
+                1 implied
                 1 impenetrable
                 1 immense
                 1 imagination
                 1 illustrious
-                1 ill-usage
-                1 identity.
-                1 identity
+                1 illusage
                 1 identified
-                1 ice-pack
+                1 icepack
                 1 hushed
-                1 husband's
+                1 husbands
                 1 hurried
                 1 hunter
                 1 hundred
                 1 humours
                 1 human
-                1 http://sherlock-holm.es
-                1 house.
-                1 hours,
-                1 hour."
-                1 hotel."
+                1 httpsherlockholmes
+                1 hotel
                 1 horror
                 1 horrified
-                1 hopes,
-                1 hopes
                 1 hoped
                 1 hook
                 1 honour
-                1 home,
+                1 home
                 1 hole
-                1 hold.
-                1 hold
                 1 hobnobbed
                 1 hoarse
                 1 hint
-                1 hinges.
-                1 him?"
+                1 hinges
                 1 hill
                 1 hid
-                1 hesitated.
+                1 hesitated
                 1 hereby
-                1 here.
-                1 here,"
-                1 here,
-                1 her--a
+                1 hera
+                1 heor
                 1 hempen
                 1 helplessly
                 1 heavy
                 1 heavens
-                1 heart."
-                1 heart
                 1 hearing
                 1 heading
-                1 he?"
-                1 he--or
-                1 having.
-                1 having
                 1 haunted
                 1 hate
                 1 hat
-                1 harpoons.
-                1 harpooner.
-                1 harpoon.
-                1 harpoon,
+                1 harpoons
+                1 harpooner
                 1 harmonium
                 1 hardship
                 1 happens
-                1 happened--August
+                1 happenedAugust
                 1 happened
-                1 hands."
-                1 hands.
                 1 handling
                 1 handcuffs
-                1 hand."
-                1 hand,
-                1 half-sovereign,
-                1 haggard,
-                1 had;
+                1 halfsovereign
+                1 haggard
                 1 habit
                 1 guilty
                 1 guessed
                 1 gruff
                 1 grown
                 1 groves
-                1 grounds,
-                1 grounds
-                1 ground-floor,
-                1 groaned.
-                1 grey-haired
+                1 groundfloor
+                1 groaned
+                1 greyhaired
                 1 grew
                 1 green
                 1 greater
                 1 greasy
-                1 gratitude.
-                1 grateful.
+                1 gratitude
+                1 grateful
                 1 grasp
-                1 gracious,
-                1 goodness'
-                1 good-humouredly.
+                1 gracious
+                1 goodness
+                1 goodhumouredly
                 1 gone
-                1 golf.
+                1 golf
                 1 gloomy
                 1 gleamed
                 1 glasses
                 1 glanced
-                1 glance.
+                1 glance
                 1 gives
-                1 girl,
+                1 girl
                 1 gigantic
-                1 ghost,
+                1 ghost
                 1 getting
                 1 gets
                 1 gesture
-                1 gentleman,
                 1 gazed
-                1 gave;
                 1 gauze
                 1 gaunt
                 1 gates
-                1 gate.
+                1 gate
                 1 gasp
                 1 gap
-                1 gales.
-                1 gale,
+                1 gales
+                1 gale
                 1 gaining
                 1 future
-                1 fury,
+                1 fury
                 1 furtive
                 1 furniture
                 1 furiously
                 1 fully
-                1 full,
-                1 fruitless.
+                1 fruitless
                 1 frightful
                 1 frightened
-                1 fright,
-                1 friends."
-                1 friend,
+                1 fright
+                1 friends
                 1 frequently
                 1 framed
                 1 frail
-                1 four-wheeler,
-                1 founder,
+                1 fourwheeler
+                1 founder
                 1 forwards
                 1 forth
-                1 forms?
-                1 forms
-                1 formed.
                 1 formatted
-                1 form,
-                1 forgotten,
+                1 forgotten
                 1 forest
                 1 forced
-                1 for?"
-                1 footmarks."
+                1 footmarks
                 1 follow
                 1 folk
                 1 foliage
                 1 flushed
                 1 fluffy
-                1 flowers.
-                1 floor."
+                1 flowers
                 1 flog
-                1 flight.
-                1 flight
                 1 flies
-                1 fled.
-                1 fled
                 1 flashing
-                1 flap.
+                1 flap
                 1 fix
                 1 five
                 1 fitness
                 1 fit
-                1 fisher.
+                1 fisher
                 1 finger
                 1 finally
                 1 filled
                 1 figures
                 1 fighting
-                1 fiend.
-                1 fields.
+                1 fifty
+                1 fiend
                 1 female
-                1 fellow.
-                1 fellow,"
-                1 fellow's
+                1 fellows
                 1 felled
                 1 fell
                 1 feels
                 1 features
                 1 fearful
                 1 fault
-                1 father?
-                1 father."
-                1 fate.
+                1 fate
                 1 fastened
-                1 fashion,
+                1 fashion
                 1 farewell
                 1 fang
                 1 families
@@ -1794,134 +1488,98 @@
                 1 fallen
                 1 faithful
                 1 fairly
-                1 fair-haired
-                1 failure."
-                1 fact.
+                1 fairhaired
+                1 failure
                 1 facing
                 1 faces
                 1 faced
-                1 face,
-                1 eyes.
-                1 eyes,
-                1 eyebrows.
+                1 eyebrows
                 1 expressed
                 1 exploring
                 1 explanation
-                1 experience,
-                1 expedition,
+                1 experience
+                1 expedition
                 1 expect
                 1 exertion
-                1 exercise.
                 1 exchange
                 1 exceedingly
                 1 examine
                 1 exactly
-                1 evidence,
-                1 ever."
-                1 ever.
                 1 events
-                1 evening."
-                1 evening
                 1 establish
-                1 essentials."
+                1 essentials
                 1 erect
                 1 entry
                 1 entirely
                 1 enraged
-                1 enough,"
                 1 enjoy
                 1 engraved
                 1 engaged
                 1 energetic
-                1 endured.
+                1 endured
                 1 endeavoured
-                1 end."
-                1 end,
-                1 end
-                1 elsewhere.
+                1 elsewhere
                 1 eleven
                 1 electronic
                 1 elapse
                 1 eggs
                 1 effort
-                1 easy.
-                1 easy
                 1 easily
                 1 easier
                 1 earth
-                1 dwellings,
+                1 dwellings
                 1 dust
                 1 due
-                1 drunkard,
+                1 drunkard
                 1 drunk
-                1 drowned.
+                1 drowned
                 1 dropping
                 1 droning
-                1 driven,
-                1 drive.
-                1 drink,
-                1 dried-up
-                1 dressed,
+                1 driven
+                1 driedup
                 1 drawn
-                1 drawback,
+                1 drawback
                 1 dramatic
-                1 drab-covered
-                1 down.
-                1 doubt.
-                1 doubt
+                1 drabcovered
                 1 doublings
                 1 doors
-                1 door."
-                1 door.
-                1 done.
                 1 doings
                 1 document
-                1 do?"
-                1 do,"
                 1 distant
                 1 distance
                 1 displacement
-                1 dismissal,
+                1 dismissal
                 1 disguises
-                1 discoloured.
+                1 discoloured
                 1 discolouration
                 1 disappointed
-                1 disappeared."
                 1 dirty
-                1 direction,
-                1 dinghy.
-                1 difficulties,
-                1 difference.
-                1 died.
+                1 dinghy
+                1 difficulties
+                1 difference
                 1 die
                 1 devote
                 1 devised
-                1 develops.
-                1 development.
-                1 detectives,
-                1 detective.
-                1 detective's
-                1 detective
+                1 develops
+                1 development
                 1 detected
-                1 details.
+                1 details
                 1 description
                 1 depths
                 1 deny
                 1 delivered
-                1 dejection.
+                1 dejection
                 1 deftly
                 1 defiantly
-                1 deep-lined
+                1 deeplined
                 1 decanters
                 1 deal
                 1 deadly
-                1 days.
                 1 day
-                1 dawn,
-                1 daughter
+                1 dawn
                 1 dates
                 1 date
-                1 darkness?
+                1 darkness
                 1 darkest
                 1 daring
                 1 damning
@@ -1929,245 +1587,185 @@
                 1 curving
                 1 curtains
                 1 curtain
-                1 cursing,
+                1 cursing
                 1 crumbling
                 1 crouched
                 1 crossing
                 1 crossed
                 1 cross
-                1 crimes,
-                1 crime?
-                1 crime."
-                1 crime,
-                1 creditors.
+                1 crimes
+                1 creditors
                 1 creditor
-                1 creature.
-                1 creature,
-                1 creature
                 1 creak
                 1 craft
                 1 cowering
                 1 covered
-                1 cover.
-                1 court.
+                1 court
                 1 couple
                 1 county
-                1 country,
-                1 country
                 1 correspond
-                1 correct?"
-                1 corners.
-                1 corner,
-                1 corner
+                1 correct
+                1 corners
                 1 cord
                 1 convinced
                 1 conveying
-                1 conversation.
+                1 conversation
                 1 continually
                 1 containing
                 1 contained
                 1 consisted
                 1 connected
                 1 conjectured
-                1 confidentially?"
-                1 confidence.
-                1 conduct.
-                1 conclusive."
-                1 conclusion."
+                1 confidentially
+                1 confidence
+                1 conduct
+                1 conclusive
+                1 conclusion
                 1 concerns
-                1 concerned.
-                1 concentration,
+                1 concerned
+                1 concentration
                 1 concealed
                 1 completely
                 1 complaint
-                1 company.
-                1 companion's
-                1 committed."
-                1 committed.
-                1 comments.
+                1 company
+                1 companions
+                1 comments
                 1 commend
                 1 command
-                1 coming.
-                1 coming,
                 1 comes
-                1 come.--Sherlock
-                1 come.
+                1 comeSherlock
                 1 colour
-                1 collection's
-                1 collar,
-                1 collapsed.
-                1 cold.
-                1 cold
-                1 coincidence,
-                1 coffee.
+                1 collections
+                1 collar
+                1 collapsed
+                1 coincidence
+                1 coffee
                 1 coast
-                1 clouded,
+                1 clouded
                 1 cloth
                 1 closer
                 1 closed
-                1 clinking.
+                1 clinking
                 1 clients
-                1 client."
-                1 client
                 1 clearly
                 1 clearing
                 1 clear
                 1 cleaned
-                1 claw,
-                1 clasp-knife
+                1 claw
+                1 claspknife
                 1 claim
                 1 circumstances
-                1 church,
+                1 church
                 1 chuckled
                 1 chuckle
                 1 chimes
-                1 chimed,
+                1 chimed
                 1 cheery
-                1 cheeks.
-                1 cheeks
                 1 chattering
-                1 charts,
+                1 charts
                 1 character
-                1 changing,
+                1 changing
                 1 change
-                1 chance,
+                1 chance
                 1 challenged
                 1 certain
-                1 cell,
-                1 ceiling,
+                1 cell
+                1 ceiling
                 1 caused
-                1 case,
                 1 carried
-                1 carpet."
+                1 carpet
                 1 carefully
                 1 career
-                1 care.
-                1 care
-                1 card.
+                1 card
                 1 captive
-                1 captain.
-                1 captain,
-                1 captain's
-                1 capricious--that
+                1 captains
+                1 capriciousthat
                 1 capable
+                1 cant
                 1 cannot
-                1 candle-end
-                1 canary-trainer,
-                1 can't
-                1 cabin."
-                1 cabin'--a
-                1 cabin
-                1 cab,
-                1 butcher's?"
-                1 butcher's
-                1 but,
-                1 bushes.
-                1 bushes
+                1 candleend
+                1 canarytrainer
+                1 cabina
+                1 cab
                 1 burst
                 1 burned
-                1 burglar."
+                1 burglar
                 1 bunk
                 1 bulwark
-                1 bull.
-                1 bull-dog
+                1 bulldog
+                1 bull
                 1 built
                 1 brow
                 1 brokers
-                1 broker,
+                1 broker
                 1 broad
                 1 bristled
                 1 brindled
                 1 breathless
                 1 breast
                 1 breakfasted
-                1 breakfast.
-                1 breakfast,
-                1 box,
                 1 bought
                 1 bottom
                 1 bottle
                 1 borne
                 1 born
                 1 bore
-                1 book.
                 1 bold
-                1 body?
-                1 boards."
-                1 board,
-                1 board
+                1 body
+                1 boards
                 1 blurted
-                1 bluebottles,
-                1 blow.
-                1 blow
-                1 blood-stain.
-                1 blood-bespattered
+                1 bluebottles
+                1 bloodbespattered
                 1 blood
-                1 blind,
-                1 blind
                 1 blessed
                 1 blazed
                 1 blackest
                 1 black
                 1 bits
-                1 bit;
+                1 bit
                 1 birds
                 1 bind
                 1 big
                 1 bet
                 1 berth
-                1 below?"
+                1 below
                 1 bellow
-                1 believed,
+                1 believed
                 1 believe
                 1 belief
                 1 belated
                 1 behold
                 1 begun
-                1 before?
                 1 beetle
-                1 been.
-                1 been!"
-                1 bed,
+                1 bed
                 1 because
                 1 became
                 1 beautiful
-                1 beast.
-                1 beast
-                1 bearing.
                 1 bearded
                 1 bear
-                1 bay--the
+                1 baythe
                 1 bawl
-                1 barbed-headed
-                1 bankers,"
+                1 barbedheaded
+                1 bankers
                 1 banker
                 1 banish
                 1 baggage
                 1 badly
                 1 bade
-                1 back."
-                1 back.
-                1 baccy-pouch
+                1 baccypouch
                 1 avoided
                 1 available
                 1 autumn
-                1 attention.
-                1 attention,
                 1 attempt
                 1 attained
                 1 astonish
-                1 assault?
-                1 assault
-                1 asked.
-                1 asked,
                 1 ask
+                1 asis
                 1 ascertained
-                1 artists,
-                1 art's
+                1 arts
+                1 artists
                 1 arrived
                 1 arrive
-                1 arrest.
-                1 arrest
                 1 aroused
                 1 around
                 1 argued
@@ -2178,16 +1776,14 @@
                 1 applied
                 1 application
                 1 applicant
-                1 appetite.
-                1 appeared,
-                1 appeared
-                1 appearance.
+                1 appetite
+                1 appearance
                 1 appealed
                 1 appeal
-                1 apology.
-                1 apologize,
+                1 apology
+                1 apologize
                 1 anyone
-                1 anyhow,
+                1 anyhow
                 1 anxious
                 1 answer
                 1 ankles
@@ -2195,296 +1791,178 @@
                 1 anaemic
                 1 amongst
                 1 amid
-                1 ambuscade.
+                1 ambuscade
                 1 ambitions
                 1 amazing
-                1 amateur.
-                1 alternative?"
-                1 alternative.
-                1 also.
-                1 along,
-                1 along
+                1 amateur
                 1 allowed
-                1 all?"
-                1 all."
-                1 all.
-                1 all,"
-                1 all,
                 1 alert
-                1 alarm,
+                1 alarm
                 1 air
                 1 aided
                 1 agreement
-                1 ago,"
-                1 agents,
+                1 agents
                 1 aged
-                1 age,
-                1 age
-                1 again?"
-                1 again.
-                1 again,
                 1 afford
                 1 affairs
-                1 affair.
+                1 affair
                 1 advertisements
-                1 admit,
-                1 admit
                 1 admiration
                 1 address
                 1 additional
                 1 adapted
                 1 accustomed
-                1 account,
                 1 according
-                1 accident,
+                1 accident
                 1 absent
                 1 absconding
-                1 abrasion,
+                1 abrasion
                 1 abandon
                 1 aback
+                1 Your
                 1 Yet
                 1 Within
                 1 With
                 1 Wire
-                1 Wilson,
+                1 Wilson
                 1 Whoever
                 1 Who
-                1 West-country
-                1 Wells,
-                1 Wednesday.
-                1 Watson.
+                1 Which
+                1 Where
+                1 Whatever
+                1 Westcountry
+                1 Wells
+                1 Wednesday
+                1 Very
                 1 Vast
-                1 Unicorn.
-                1 Unicorn
+                1 Undoubtedly
                 1 Two
-                1 Twenty-six
-                1 Tut,
+                1 Twentysix
+                1 Tut
                 1 Tunbridge
                 1 Tuesday
-                1 Tosca--an
-                1 To-night
-                1 To-morrow
+                1 Try
+                1 Toscaan
+                1 Tonight
+                1 Tomorrow
                 1 Through
                 1 Those
                 1 These
-                1 There,
-                1 There's
+                1 Theres
+                1 Thank
                 1 THE
-                1 Sussex.
-                1 Sussex
-                1 Surely
-                1 Street,
-                1 Someone
-                1 Slater,
+                1 Sumner
+                1 Something
+                1 Some
+                1 Slater
+                1 Simply
+                1 Show
                 1 Shortly
                 1 Shipping
                 1 Shetland
                 1 Sharp
+                1 Shall
                 1 Several
                 1 Send
-                1 See
                 1 Scotland
                 1 Saxon
                 1 San
-                1 Row,
+                1 SS
                 1 Rooms
                 1 Right
-                1 Rica,
+                1 Rica
                 1 Ratcliff
-                1 Railway,"
-                1 Puritan--a
-                1 Pope--down
-                1 Peter's
+                1 Railway
+                1 Puritana
+                1 Popedown
+                1 Peters
                 1 Perhaps
                 1 Peeping
-                1 Paulo,
-                1 Pattins.
+                1 Paulo
+                1 Pattins
                 1 Pacific
                 1 PETER
                 1 Our
                 1 Once
-                1 Of
+                1 Oh
                 1 OF
-                1 Now
                 1 Nothing
                 1 Norwegian
-                1 Norway.
-                1 Norway--I'll
-                1 Norway
+                1 NorwayIll
                 1 North
                 1 Norfolk
-                1 No?
-                1 No,
-                1 Neligan?"
-                1 Neligan."
-                1 Neligan,
+                1 None
                 1 Nearer
-                1 Monday,
-                1 Meanwhile,
-                1 Lord,
-                1 Lord
-                1 London.
+                1 Naturally
+                1 Monday
+                1 Meanwhile
+                1 Meaning
                 1 Like
-                1 Let
-                1 Lee.
                 1 Leaning
                 1 Late
-                1 Lancaster."
-                1 Lancaster,
                 1 July
                 1 John
-                1 It's
-                1 Inspector
+                1 James
                 1 Inside
-                1 Important.
-                1 I,
-                1 I'll
-                1 I'd
+                1 Inquiries
+                1 Important
+                1 Id
                 1 Hugh
-                1 How
                 1 House
-                1 Hotel,
-                1 Hotel
                 1 Hopley
-                1 Hopkins?"
-                1 Hopkins;
-                1 Hopkins,"
-                1 Holmes?"
-                1 Holmes.'
-                1 Holmes!"
                 1 Holiness
-                1 Holdernesse,
-                1 Highway.
-                1 Heavens!
-                1 Half-past
+                1 Holdernesse
+                1 Highway
+                1 Heres
+                1 Heavens
+                1 Harpooner
+                1 Halfpast
                 1 HTML
+                1 Good
+                1 First
                 1 Few
-                1 East-end,
-                1 East-End
+                1 Failure
+                1 Eight
+                1 Eastend
+                1 EastEnd
                 1 During
-                1 Dundee.'
-                1 Dundee.
-                1 Dundee,
                 1 Duke
-                1 Dr.
+                1 Dr
                 1 Doyle
+                1 Does
                 1 Do
                 1 Did
+                1 Could
                 1 Costa
-                1 Cornwall,
+                1 Cornwall
                 1 Conan
                 1 Close
-                1 Carey;
-                1 Carey."
                 1 Cardinal
                 1 Canadian
-                1 Cairns."
-                1 Cairns,
+                1 Can
                 1 By
-                1 Brixton.
-                1 Britain.
+                1 Brixton
+                1 Britain
                 1 Both
                 1 Before
-                1 Basil.
-                1 Basil--and
-                1 Basil
+                1 Because
+                1 Basiland
                 1 BLACK
-                1 August,
+                1 August
                 1 Arthur
-                1 Argentine,
-                1 Anyhow,
+                1 Argentine
+                1 Anyhow
                 1 Another
                 1 American
-                1 America,
-                1 Allardyce's
+                1 America
+                1 Allardyces
                 1 All
                 1 Alighting
-                1 Ah,
-                1 Agent,
+                1 Ah
+                1 Agent
                 1 Again
                 1 About
                 1 ASCII
                 1 ADVENTURE
-                1 46,
-                1 3.1.
-                1 1884,
-                1 1883.
-                1 1883,
-                1 ----------
-                1 'the
-                1 'Sumner,
-                1 'S.S..
-                1 'Inspector
-                1 'C.P.R.'
-                1 '95.
-                1 '95
-                1 '83
-                1 '45--fifty
-                1 "who
-                1 "weald,"
-                1 "as-is"
-                1 "Your
-                1 "Yes;
-                1 "Yes,"
-                1 "Which
-                1 "Where
-                1 "Whatever
-                1 "What,
-                1 "Well,"
-                1 "We'll
-                1 "We
-                1 "Was
-                1 "Very
-                1 "Undoubtedly.
-                1 "Try
-                1 "Then
-                1 "That
-                1 "Thank
-                1 "Surely
-                1 "Something
-                1 "Some
-                1 "So
-                1 "Simply
-                1 "Show
-                1 "Shall
-                1 "See
-                1 "Patrick
-                1 "Oh,
-                1 "Of
-                1 "Now,
-                1 "None."
-                1 "No."
-                1 "No
-                1 "Naturally,
-                1 "Mr.
-                1 "Meaning
-                1 "Let
-                1 "James
-                1 "J.H.N."
-                1 "It's
-                1 "Is
-                1 "Inquiries
-                1 "I'll
-                1 "However,
-                1 "How
-                1 "Here's
-                1 "He
-                1 "Harpooner?"
-                1 "Good
-                1 "For
-                1 "First
-                1 "Failure,
-                1 "Excellent,
-                1 "Excellent!
-                1 "Exactly.
-                1 "Exactly,
-                1 "Eight
-                1 "Dundee,
-                1 "Does
-                1 "Could
-                1 "Come
-                1 "Can
-                1 "C.P.R.,"
-                1 "Because
-                1 "As
-                1 "1883."
+                1 
+

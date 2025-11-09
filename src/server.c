@@ -85,10 +85,10 @@ int main(void) {
     // test_set();
     
     
-    // inf("testing shakespeare ... this might take a while");
-    // test_hash_map_hash_shakespeare();
-    inf("testing test_hash_map_hash_black_peter ... this might take a while");
-    test_hash_map_hash_black_peter();
+    inf("testing shakespeare ... this might take a while");
+    test_hash_map_hash_shakespeare();
+    // inf("testing test_hash_map_hash_black_peter ... this might take a while");
+    // test_hash_map_hash_black_peter();
 
     inf("DONE testing");
     

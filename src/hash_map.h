@@ -238,8 +238,8 @@ static size_t hits = 0;
 
     #define BUFF_LEN 2048
 
-    int read_file_to_map(hash_map_t *map, char *file_path) {
-
+    size_t read_file_to_map(hash_map_t *map, char *file_path) {
+        size_t words = 0;
         FILE *file = fopen(file_path, "r");
         if (file == NULL) {
             err("[%s] failed to open file ... 1", file_path);
@@ -252,7 +252,7 @@ static size_t hits = 0;
         
         int r;
         size_t i;
-        size_t w=1;
+        //size_t w=1;
         // hash_map_t map = {0};
         for(i=0;i<100;++i) word[i] = 0;
         i=0;
@@ -262,15 +262,16 @@ static size_t hits = 0;
                 //inf("[%zu][%zu] ch='%c'",i,b,buffer[b]);
                 bool is_last_word = r<BUFF_LEN && b==r-1;
                 if (isspace(buffer[b]) || i>=100 || is_last_word) {
+                    words++;
                     if (is_last_word) 
                         word[i++] = buffer[b];
                     if (strlen(word)>0) {
                         int index = hash_map_index(map,word);
                         if (!(map->items[index].use == false || strcmp(map->items[index].key, word) != 0)) {
                             map->items[index].val += 1;
-                            wrn(" <%s> : [%5s] '%s'", file_path,"",word);
+                            //wrn(" <%s> : [%5s] '%s'", file_path,"",word);
                         } else {
-                            inf(" <%s> : [%5lld] '%s'", file_path,w++,word);
+                            //inf(" <%s> : [%5lld] '%s'", file_path,w++,word);
                             hash_map_add(map,word,1);
                             //fclose(file);
                             //return 0;
@@ -280,10 +281,14 @@ static size_t hits = 0;
                     i=0;
                     continue;
                 }
-                word[i++] = buffer[b];
+                char c = buffer[b];
+                if ((c>='a' && c<='z') || (c>='A' && c<='Z'))
+                    word[i++] = buffer[b];
             }
         }
-        return fclose(file);        
+        fclose(file);
+
+        return words;        
     }
 
     #define MAX_WORD_LENGTH 1023
@@ -686,7 +691,7 @@ static size_t hits = 0;
 
         
         hash_map_t map = {0};
-        size_t words = scan_file_to_map(&map,file_name_story);
+        size_t words = read_file_to_map(&map,file_name_story);
 
         int max = INT_MIN;
         entry_t e = {0};
