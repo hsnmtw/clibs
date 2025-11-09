@@ -106,10 +106,10 @@ static size_t mizz = 0;
         //todo("%s",__func__);
         if (map->items == NULL || map->items == 0 || map->capacity < 1 || map->count + 1 >= map->capacity) {
             
-            if(map->items == NULL              ) dbg(" map->items == NULL ");
-            if(map->items == 0                 ) dbg(" map->items == 0 ");
-            if(map->capacity < 1               ) dbg(" map->capacity < 1 ");
-            if(map->count + 1 >= map->capacity ) dbg(" map->count + 1 >= map->capacity ");
+            if (map->items == NULL              ) dbg(" map->items == NULL ");
+            if (map->items == 0                 ) dbg(" map->items == 0 ");
+            if (map->capacity < 1               ) dbg(" map->capacity < 1 ");
+            if (map->count + 1 >= map->capacity ) dbg(" map->count + 1 >= map->capacity ");
 
             dbg("expand ... %zu -- %zu || %d", map->count, map->capacity, map->count + 1 >= map->capacity);
             
@@ -225,9 +225,10 @@ static size_t mizz = 0;
             fclose(file);
             return;
         }
-        char buffer[4096] = {0};
+        const size_t BUFF_LEN = 4096;
+        char buffer[BUFF_LEN] = {0};
         size_t r;
-        if ((r = fread(buffer,sizeof(char),4096,file)) < 1) {
+        if ((r = fread(buffer,sizeof(char),BUFF_LEN,file)) < 1) {
             err("failed to open file ... 2");
             fclose(file);
             return;
@@ -235,7 +236,7 @@ static size_t mizz = 0;
 
         size_t spaces = 0;
         bool in_space = false;
-        for(size_t i=0;i<4096 && buffer[i] != '\0';++i) {
+        for(size_t i=0;i<BUFF_LEN && buffer[i] != '\0';++i) {
             if (isspace(buffer[i])) {
                 if (!in_space) spaces++;
                 in_space = true;
@@ -250,7 +251,7 @@ static size_t mizz = 0;
 
         char *words[spaces+1];
         size_t j = 0, w = 0;
-        for(size_t i=0;i<4096 && buffer[i] != '\0';++i) {
+        for(size_t i=0;i<BUFF_LEN && buffer[i] != '\0';++i) {
             if (isspace(buffer[i])) continue;
             char word[40] = {0};
             while(!isspace(buffer[i]) && j<40) {
