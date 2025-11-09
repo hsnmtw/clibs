@@ -219,71 +219,61 @@ static size_t mizz = 0;
         return map->items[index].val;
     }
 
-    #define BUFF_LEN 4096
-    #define BUFF_LEN2 5500000
+    #define BUFF_LEN 2048
+
+    int read_file_to_map(hash_map_t *map, char *file_path) {
+
+        FILE *file = fopen(file_path, "r");
+        if (file == NULL) {
+            err("[%s] failed to open file ... 1", file_path);
+            fclose(file);
+            return 1;
+        }
+
+        char buffer[BUFF_LEN] = {0};
+        char word[100] = {0};
+        
+        int r;
+        size_t i;
+        size_t w=1;
+        // hash_map_t map = {0};
+        for(i=0;i<100;++i) word[i] = 0;
+        i=0;
+        hash_map_init(map);
+        while ((r = fread(buffer,1,BUFF_LEN,file)) > 0) {
+            for(int b=0;b<r;++b){
+                //inf("[%zu][%zu] ch='%c'",i,b,buffer[b]);
+                bool is_last_word = r<BUFF_LEN && b==r-1;
+                if (isspace(buffer[b]) || i>=100 || is_last_word) {
+                    if (is_last_word) 
+                        word[i++] = buffer[b];
+                    if (strlen(word)>0) {
+                        int index = hash_map_index(map,word);
+                        if (!(map->items[index].key == NULL || strcmp(map->items[index].key, word) != 0)) {
+                            map->items[index].val += 1;
+                            wrn(" <%s> : [%5s] '%s'", file_path,"",word);
+                        } else {
+                            inf(" <%s> : [%5lld] '%s'", file_path,w++,word);
+                            hash_map_add(map,word,1);
+                            //fclose(file);
+                            //return 0;
+                        }
+                    }
+                    for(size_t j=0;j<100 && j<i;++j) word[j] = 0;
+                    i=0;
+                    continue;
+                }
+                word[i++] = buffer[b];
+            }
+        }
+        return fclose(file);        
+    }
 
     HASH_MAP_API void test_hash_map_hash(void) {
 
-        FILE *file = fopen("./testdata/AbigailsTale.txt", "r");
-        if (file == NULL) {
-            err("failed to open file ... 1");
-            fclose(file);
-            return;
-        }
-        char buffer[BUFF_LEN] = {0};
-        size_t r;
-        if ((r = fread(buffer,sizeof(char),BUFF_LEN,file)) < 1) {
-            err("failed to open file ... 2");
-            fclose(file);
-            return;
-        }
-
-        size_t spaces = 0;
-        bool in_space = false;
-        for(size_t i=0;i<BUFF_LEN && buffer[i] != '\0';++i) {
-            if (isspace(buffer[i])) {
-                if (!in_space) spaces++;
-                in_space = true;
-            } else {
-                in_space = false;
-            }
-        }
-
-        inf("number of words = %zu", spaces+1);
-
-        assertf(spaces == 683, "number of spaces must be 683, but got = %zu", spaces);
-
-        char *words[spaces+1];
-        size_t j = 0, w = 0;
-        for(size_t i=0;i<BUFF_LEN && buffer[i] != '\0';++i) {
-            if (isspace(buffer[i])) continue;
-            char word[40] = {0};
-            while(!isspace(buffer[i]) && j<40) {
-                word[j++] = buffer[i++];
-            }
-            // inf("w='%s'",word);
-            words[w++] = strdup(word);
-            j=0;
-        }
-
-        // if(spaces>0) return 1;
-
-
-        fclose(file);
-
-        static hash_map_t map = {NULL,0,0};
-        size_t n = ARRAY_LEN(words);
-        for(size_t i=0;i < n;++i) {
-            char *key = words[i];
-            if (map.count < 1 || hash_map_get(&map,key) < 1) {
-                hash_map_add(&map,key,1);
-            } else {
-                int index = hash_map_index(&map, key);
-                //dbg("key=%s -- index=%d",key,index);
-                map.items[index].val += 1;
-            }
-        }
-
+        hash_map_t map = {0};
+        read_file_to_map(&map,"./testdata/AbigailsTale.txt");
+        
         inf("number of items: %zu", map.count);
         FILE *fout = fopen("./testdata/tale.txt","w");
         for(size_t i=0;i < map.capacity;++i) {
@@ -627,44 +617,13 @@ static size_t mizz = 0;
 
     }
 
+    
 
     HASH_MAP_API void test_hash_map_hash_shakespeare(void) {
 
-        FILE *file = fopen("./testdata/t8.shakespeare.txt", "r");
-        if (file == NULL) {
-            err("[t8.shakespeare] failed to open file ... 1");
-            fclose(file);
-            return;
-        }
-        char buffer[BUFF_LEN] = {0};
-        char word[100];// = (char*)malloc(sizeof(char)*100);
-        // memset(word,0,sizeof(char)*100);
-        size_t r;
-        size_t i;
-        size_t w=1;
+        
         hash_map_t map = {0};
-        hash_map_init(&map);
-        while ((r = fread(buffer,sizeof(char),BUFF_LEN,file)) > 0) {
-            for(size_t b=0;b<BUFF_LEN;++b){
-                if (isspace(buffer[b]) || i>=100) {
-                    if (strlen(word)>0) {
-                        int index = hash_map_index(&map,word);
-                        if (!(map.items[index].key == NULL || strcmp(map.items[index].key, word) != 0)) {
-                            map.items[index].val += 1;
-                        } else {
-                            inf(" shakespeare : [%04lld] '%s'",w++,word);
-                            hash_map_add(&map,word,1);
-                        }
-                    }
-                    for(i=0;i<100;++i) word[i] = 0;
-                    i=0;
-                    continue;
-                }
-                word[i++] = buffer[b];
-            }
-        }
-        // free(word);
-        fclose(file);
+        read_file_to_map(&map,"./testdata/t8.shakespeare.txt");
 
 
         inf("number of items: %zu", map.count);
@@ -677,7 +636,7 @@ static size_t mizz = 0;
             fwrite(line,sizeof(char),strlen(line),fout);
         }
         fclose(fout);
-        assertf(map.count==67506,"we should have 308 items, but got %zu", map.count);
+        assertf(map.count==67506,"we should have 67506 items, but got %zu", map.count);
 
         inf("[\033[1;44m%-30s\033[0m] tests, shakespeare", __func__);
         trc("misses on hash lookup = %lld", miss);
