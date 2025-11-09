@@ -4,7 +4,6 @@
         "cstdint": "c"
     },
     "editor.hover.enabled": false,
-    "terminal.integrated.enableFileLinks": "off",
     "editor.formatOnPaste": false,
     "editor.formatOnSave": false,
     "editor.formatOnType": false,

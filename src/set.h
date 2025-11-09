@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
 #include "macros.h"
@@ -22,11 +23,13 @@
 
     typedef struct {
         char **items;
+        uint32_t *hashes;
         size_t count;
         size_t capacity;
     } set_t;
 
     SET_API void set_append(set_t *set, char *value);
+    SET_API bool set_contains(set_t *set, char *value);
     SET_API char *set_get(set_t *set, size_t index);
     SET_API void set_remove_at(set_t *set, size_t index);
     SET_API void set_clear(set_t *set);
@@ -41,16 +44,31 @@
 #   ifndef __SET_IMPL
 #   define __SET_IMPL
 
+    SET_API bool set_contains(set_t *set, char *value) {
+        if (set == NULL || value == NULL || set->items == NULL || set->hashes == NULL) return false;
+        uint32_t hash = hash_map_hash(value);
+        for(size_t i=0;i<set->count;++i) {
+            if (set->hashes[i] == hash) return true;
+        }
+        return false;
+    }
+
     SET_API void set_append(set_t *set, char *value) {
         if (set == NULL || value == NULL) return;
+        if (set_contains(set,value)) return;
         if (set->count >= set->capacity) {
             size_t size = sizeof(char*)*(set->count+SET_INC_SIZE);
             char **items = (char**)malloc(size); 
+            if (set->hashes != NULL) {
+                free(set->hashes);
+            }
+            set->hashes = (uint32_t*)malloc(sizeof(uint32_t)*(set->capacity+SET_INC_SIZE));
             memset(items,0,size);
             if (set->items != NULL) {
                 for(size_t i=0;i<set->capacity;++i) {
                     if (set->items[i] == NULL) continue;
                     items[i] = strdup(set->items[i]);
+                    set->hashes[i] = hash_map_hash(items[i]);
                     free(set->items[i]);
                 }
                 free(set->items);
@@ -58,11 +76,9 @@
             set->items = items;
             set->capacity += SET_INC_SIZE;
         }
-        uint32_t hash = hash_map_hash(value);
-        for(size_t i=0;i<set->count;++i) {
-            if (set->items[i] != NULL && hash_map_hash(set->items[i])==hash) return;
-        }
-        set->items[set->count++] = strdup(value);
+        set->hashes[set->count] = hash_map_hash(value);
+        set->items[set->count] = strdup(value);
+        set->count += 1;
     }
 
     SET_API char *set_get(set_t *set, size_t index) {
@@ -110,9 +126,12 @@
         assertf(set.count==5,"should have 5 items now, but got %lld", set.count);
         assertf(set.capacity==50,"should have capacity of 150, but got %lld", set.capacity);
         
+        assertf(set_contains(&set, "test"), "this should return true before clearing");
         set_clear(&set);
         assertf(set.count == 0,"set is cleared");
         assertf(set.capacity == 0,"set is cleared, capacity is zero");
+
+        assertf(!set_contains(&set, "test"), "this should return false now");
 
         inf("[\033[1;44m%-30s\033[0m] tests", __func__);
     }

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
-#include <math.h>
+// #include <math.h>
 #include "macros.h"
 
 #pragma once
@@ -79,22 +79,26 @@ static size_t mizz = 0;
 #   define __HASH_MAP_IMPL
 
     #define HASH_FACTOR 391993711
-    #define PRIMES_LEN 20
-    const uint32_t primes[] = {
-        2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71
-    };
+    //#define PRIMES_LEN 20
+    //const uint32_t primes[] = {
+    //    2, 3, 5, 7, 11, 13, 17, 
+    //    19, 23, 29, 31, 37, 41, 
+    //    43, 47, 53, 59, 61, 67, 
+    //    71, 73,	//79,	83,	89,	97,
+    //};
 
     HASH_MAP_API uint32_t hash_map_hash(const char *text) {
         if (text == NULL) return INT_MIN;
         size_t n = strlen(text);
-        long long sum = 0;
+        uint32_t hash = 59617;
+        // long long sum = 0;
         for(size_t i=0;i<n;++i) {
-            sum += pow(primes[((uint32_t)text[i])%PRIMES_LEN],(n-i));
+            // sum += pow(primes[((uint32_t)text[i])%PRIMES_LEN],(n-i));
+            hash = ((hash << 5) + hash) + (uint32_t)text[i]; /* hash * 33 + c */
         }
-        return (uint32_t) (sum < 0 ? -sum : sum) % HASH_FACTOR;
+        return hash;
+        // return (uint32_t) (sum < 0 ? -sum : sum) % HASH_FACTOR;
     }
-
-    //[TRC] : misses on hash lookup = 205056
 
     HASH_MAP_API void hash_map_add(hash_map_t *map, const char *key, const int val) {
         assertf(map != NULL, " hash map is null ");
