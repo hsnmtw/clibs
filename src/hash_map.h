@@ -7,7 +7,7 @@
 
 #pragma once
 
-#define MAP_INCREMENT_SIZE 544096
+#define MAP_INCREMENT_SIZE 100*1000
 
 
 #ifndef __HASH_MAP_H
@@ -82,27 +82,16 @@ static size_t hits = 0;
 #   ifndef __HASH_MAP_IMPL
 #   define __HASH_MAP_IMPL
 
-    #define HASH_FACTOR 391993711
-    #define PRIMES_LEN 35
-    const uint32_t primes[] = {
-       2, 3, 5, 7, 11, 13, 17, 
-       19, 23, 29, 31, 37, 41, 
-       43, 47, 53, 59, 61, 67, 
-       71, 73,	1,  4,  6,  8, 
-        9, 10, 12, 14, 16, 18 
-    };
+    
 
     HASH_MAP_API uint32_t hash_map_hash(const char *text) {
         if (text == NULL) return INT_MIN;
         size_t n = strlen(text);
-        uint32_t hash = 59617;
-        // long long sum = 0;
+        uint32_t hash = MAP_INCREMENT_SIZE/3;
         for(size_t i=0;i<n;++i) {
-            //hash += pow(primes[((uint32_t)text[i])%PRIMES_LEN],(n-i));
-            hash = ((hash << 5) + hash) + (uint32_t)text[i] + hash * 33 + 7;
+            hash = (hash << 5) + (uint32_t)(text[i]-'a')*(1+(uint32_t)pow(i+1, (uint32_t)(text[i]-'a')));
         }
         return hash;
-        // return (uint32_t) (sum < 0 ? -sum : sum) % HASH_FACTOR;
     }
 
     HASH_MAP_API void hash_map_init(hash_map_t *map) {
@@ -153,7 +142,7 @@ static size_t hits = 0;
         int index = hash_map_index(map, key);
         
         assertf (index>-1 && index < (int)map->capacity,"index=%d , count = %zu, capacity = %zu", index, map->count, map->capacity)
-        assertf (map->items[index].use == false || strcmp(map->items[index].key, key) == 0, "expect item at index %d to be NULL or of key = `%s`", index, key );
+        assertf (map->items[index].use == false || strcmp(map->items[index].key, key) == 0, "expect item at index %d to be NULL or of key = `%s`, but got '%s'", index, key, map->items[index].key );
         assertf (map->capacity > 0, "map capacity must be more than zero");
         assertf (map->count < map->capacity, "map count must be non-negative");
         // assertf (index >=0 && index < (int)map->capacity, " index must be between [%d,%d] , the given value was %d", 0, (int)map->capacity, index);
@@ -181,31 +170,14 @@ static size_t hits = 0;
         
         int n=map->capacity;
         int index = hash_map_hash(key) % n;
-        int u=index,d=index+1;
-        
-        if (u>-1 && map->items[u].key != NULL && strcmp(map->items[u].key, key) == 0) return u;
+        if (map->items[index].use && strcmp(map->items[index].key,key)==0) return index;
         mizz++;
-        size_t nn = 0;
-        for ( int i=0; i < n && nn<map->count && (u>-1 || d<n); ++i ) {
-            if (u>-1 && map->items[u].key != NULL && strcmp(map->items[u].key, key) == 0) return u;
-            if (d<n  && map->items[d].key != NULL && strcmp(map->items[d].key, key) == 0) return d;
-            if (u>-1 && map->items[u].key != NULL) nn++;
-            if (d<n  && map->items[d].key != NULL) nn++;
-            u--;
-            d++;
-            miss++;
-        }
-        
-        u=index,d=index+1;
-        for ( int i=0; i < n && (u>-1 || d<n); ++i ) {
-            if (u>-1 && map->items[u].use == false) return u;
-            if (d<n  && map->items[d].use == false) return d;
-            u--;
-            d++;
+        for (int i=0;i<n && map->items[index].use && strcmp(map->items[index].key,key)!=0;++i) {
+            index = (index+1)%n;
             miss++;
         }
 
-        return -1;
+        return index;
     }
 
     HASH_MAP_API void hash_map_remove(hash_map_t *map, const char *key) {
@@ -719,7 +691,7 @@ static size_t hits = 0;
             for(size_t i=0;i<sizeof(bar) && i<percent;++i) {
                 bar[i]=BAR;
             }
-            sprintf(line, "%-12s %4d %s\n", bar, map.items[i].val, map.items[i].key);
+            sprintf(line, "%-12s %6d %s\n", bar, map.items[i].val, map.items[i].key);
             //sprintf(line,"key = '%s', freq=%d, index='%zu'\n", map.items[i].key, map.items[i].freq, i);
             fwrite(line,sizeof(char),strlen(line),fout);
             if(map.items[i].use && map.items[i].key != NULL) free (map.items[i].key);            

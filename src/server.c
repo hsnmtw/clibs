@@ -29,6 +29,16 @@ int main(void) {
 
     srand(time(NULL));
 
+    inf("hash('%s')=%d","Once",hash_map_hash("Once"));
+    inf("hash('%s')=%d","Tale",hash_map_hash("Tale"));
+
+
+    inf("hash('%s')=%d","file",hash_map_hash("file"));
+    inf("hash('%s')=%d","directly",hash_map_hash("directly"));
+
+    inf("hash('%s')=%d","No",hash_map_hash("No"));
+    inf("hash('%s')=%d","ON",hash_map_hash("ON"));
+
 
     // route_t items[] = {
     //     (route_t) {.route="/",     .callback=home },
@@ -83,7 +93,6 @@ int main(void) {
     
     // inf("testing set");
     // test_set();
-    
     
     inf("testing shakespeare ... this might take a while");
     test_hash_map_hash_shakespeare();
