@@ -407,10 +407,10 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
             "HTTP/1.1 302 Found\r\n"
             "Content-Type: text/plain; charset=utf-8\r\n"
             "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload\r\n"
-            "Location: https://hos-hg.online/\r\n"
+            "Location: https://your-web-server-domain-name-here.com/\r\n"
             "Cache-Control: no-cache\r\n"
             "\r\n"
-            "Moved Permanently. Redirecting to https://hos-hg.online/"
+            "Moved Permanently. Redirecting to https://your-web-server-domain-name-here/"
             ;
         send(client_sockfd,b,strlen(b),0);
         shutdown(client_sockfd,0x01);
