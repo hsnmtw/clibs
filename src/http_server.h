@@ -2,6 +2,19 @@
 #ifndef _SERVER_H
 #define _SERVER_H
 
+#ifndef SIGPIPE
+#define	SIGPIPE	13	/* write on a pipe with no one to read it */
+#endif//SIGPIPE
+
+#ifndef SOL_TCP
+#define SOL_TCP 6  /* socket options TCP level */
+#endif//SOL_TCP
+
+#ifndef TCP_USER_TIMEOUT
+#define TCP_USER_TIMEOUT 18  /* how long for loss retry before timeout [ms] */
+#endif//TCP_USER_TIMEOUT
+
+
 
 #ifndef ARRAY_LEN
 #define ARRAY_LEN(a) sizeof(a)/sizeof(a[0])
@@ -108,7 +121,7 @@ HTTP_SERVER_API void *handle_client_connection(void* arg);
 HTTP_SERVER_API void start_server(int port, route_list_t *routes);
 HTTP_SERVER_API void get_secure_token();
 HTTP_SERVER_API bool file_exists(const char *file_path);
-HTTP_SERVER_API void get_static_file_response(response_t *response, const char *file_path);
+HTTP_SERVER_API void serve_static_file(char *req_path, client_t client);
 HTTP_SERVER_API void get_content_type(char *content_type, const char *file_path);
 
 char *get_ssl_err_name(int err) ;
@@ -205,52 +218,52 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
         //return strdup(content_type);
     }
 
-    HTTP_SERVER_API void get_static_file_response(response_t *response, const char *file_path) {
-        if (file_path == NULL || strlen(file_path) == 0 || !file_exists(file_path)) {
-            response->body="incorrect request";
-            response->status=500;
-            response->headers="Status: 500";
-            return;
-        }
-        char os_path[1024] = ".";
-        strcat(os_path, file_path);
-        if (!file_exists(os_path)) {
-            response->body="incorrect request [file not found]";
-            response->status=500;
-            response->headers="Status: 500";
-            return;
-        }
-        inf("getting static file contents: '%s'", os_path);
+    // HTTP_SERVER_API void get_static_file_response(response_t *response, const char *file_path) {
+    //     if (file_path == NULL || strlen(file_path) == 0 || !file_exists(file_path)) {
+    //         response->body="incorrect request";
+    //         response->status=500;
+    //         response->headers="Status: 500";
+    //         return;
+    //     }
+    //     char os_path[1024] = ".";
+    //     strcat(os_path, file_path);
+    //     if (!file_exists(os_path)) {
+    //         response->body="incorrect request [file not found]";
+    //         response->status=500;
+    //         response->headers="Status: 500";
+    //         return;
+    //     }
+    //     inf("getting static file contents: '%s'", os_path);
 
-        //char buffer[553768];
-        FILE *fptr = fopen(os_path, "rb");
-        if (fptr != NULL) {
-            fseek(fptr, 0, SEEK_END);
-            long size = ftell(fptr);
-            fseek(fptr, 0, SEEK_SET);
-            // printf("size=%lu\n", size);
+    //     //char buffer[553768];
+    //     FILE *fptr = fopen(os_path, "rb");
+    //     if (fptr != NULL) {
+    //         fseek(fptr, 0, SEEK_END);
+    //         long size = ftell(fptr);
+    //         fseek(fptr, 0, SEEK_SET);
+    //         // printf("size=%lu\n", size);
 
-            char *buffer = (char*)malloc(size+1);
-            int r = fread(buffer,size,1,fptr);
+    //         char *buffer = (char*)malloc(size+1);
+    //         int r = fread(buffer,size,1,fptr);
 
-            printf("r=%d\n", r);
-            if(r>0) {
-                buffer[size-1]='\0';
-                //printf("strlen(buffer)=%zu\n", strlen(buffer));
-                char content_type[100] = {0};
-                get_content_type(content_type, file_path);
-                response->headers = strdup(content_type);
-                response->body = strdup(buffer);
-                response->status = 200;
-                // free(buffer);
-                return;
-            }
-        }
-        fclose(fptr);
-        wrn("404 unable to get static file '%s'", file_path);
-        response->body = "RESOURCE WAS NOT FOUND";
-        response->status = 404;
-    }
+    //         printf("r=%d\n", r);
+    //         if(r>0) {
+    //             buffer[size-1]='\0';
+    //             //printf("strlen(buffer)=%zu\n", strlen(buffer));
+    //             char content_type[100] = {0};
+    //             get_content_type(content_type, file_path);
+    //             response->headers = strdup(content_type);
+    //             response->body = strdup(buffer);
+    //             response->status = 200;
+    //             // free(buffer);
+    //             return;
+    //         }
+    //     }
+    //     fclose(fptr);
+    //     wrn("404 unable to get static file '%s'", file_path);
+    //     response->body = "RESOURCE WAS NOT FOUND";
+    //     response->status = 404;
+    // }
 
     HTTP_SERVER_API bool file_exists(const char *file_path) {
         if (file_path == NULL || strlen(file_path) == 0) return false;
@@ -307,7 +320,7 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
             fprintf(stderr,"ERROR[%d]: Winsock error %ld: %s\n",_ref, error_code, message_buffer);
             //exit(1);
         #else
-            err("[NET/0/0x%03x] ERROR: %d: %s\n",_ref, errno, strerror(errno));        
+            if(errno != 0) err("[NET/0/0x%03x] ERROR: %d: %s\n",_ref, errno, strerror(errno));        
         #endif
         
     }
@@ -369,24 +382,25 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
         if (other_headers != NULL) {
             net_send(client,other_headers,strlen(other_headers),0);
         }
-        net_send(client,"Expires:-1\r\nAge:0\r\nConnection: close\r\n\r\n",40,0);
+        net_send(client,"Connection: close\r\n\r\n",21,0);
     }
 
-    void serve_static_file(char *req_path, client_t client) {
+    #define BLEN 1024
+    HTTP_SERVER_API void serve_static_file(char *req_path, client_t client) {
         //inf("here: %s [%s]",__func__,req_path);
         char content_type[50];
         get_content_type(content_type, req_path);
-        send_headers(200,content_type,NULL,client);
+        char header[100] = {0};
+        char *expire = DATE_H_date_format(DATE_H_add_to_date(DATE_H_now(),DATE_H_DAY,1),"ddd, dd MMM yyyy HH:mm:ss");
+        sprintf(header,"Expires: %s GMT\r\nCache-Control: max-age=3600\r\nAge:3600\r\n",expire);
+        send_headers(200,content_type,header,client);
 
         int r=0;
-        char buffer[256];
+        char buffer[BLEN];
         FILE *fp = fopen(req_path,"rb");
-        if (fp != NULL)
-        {
-            while ((r=fread(buffer,1,256,fp))>0) {
-                //inf("sending buffer len = %d", r);
-                net_send(client,buffer,r,0);
-            }
+        while (fp != NULL && (r=fread(buffer,1,BLEN,fp))>0) {
+            //inf("sending buffer len = %d", r);
+            net_send(client,buffer,r,0);
         }
         fclose(fp);
         
@@ -401,16 +415,18 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
         close(client.sockfd);
     }
 
+    #define DOMAIN_NAME "https://hos-hg.online/"
+
     void *hsts_handler(void *arg) {
         socket_t client_sockfd = (socket_t)arg;
         char b[516] =
             "HTTP/1.1 302 Found\r\n"
             "Content-Type: text/plain; charset=utf-8\r\n"
             "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload\r\n"
-            "Location: https://your-web-server-domain-name-here.com/\r\n"
+            "Location: "DOMAIN_NAME"\r\n"
             "Cache-Control: no-cache\r\n"
             "\r\n"
-            "Moved Permanently. Redirecting to https://your-web-server-domain-name-here/"
+            "Moved to "DOMAIN_NAME
             ;
         send(client_sockfd,b,strlen(b),0);
         shutdown(client_sockfd,0x01);
@@ -451,7 +467,7 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
             // }
         }
         
-        printf("connected ... \n");
+        dbg("connected ... ");
         char buf[BUFFER_LEN] = {0};
         int bytes = net_recv(client, buf, sizeof(buf),0);
         // int s=-1,e=0;
@@ -466,7 +482,7 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
         response_t response = NOT_FOUND_RESPONSE;
         
         if (req.path != NULL && strlen(req.path)>0) {
-            printf("\n\n------------------\nexists [%s]: %d\n----------------\n",req.path, file_exists(req.path));
+            // printf("\n\n------------------\nexists [%s]: %d\n----------------\n",req.path, file_exists(req.path));
             char route_path[1024] = {0};
             sprintf(route_path,"%s:%s",req.method,req.path);
             inf("==> '%s'", route_path);
@@ -526,17 +542,6 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
         return NULL;
     }
 
-    #ifndef SIGPIPE
-    #define	SIGPIPE	13	/* write on a pipe with no one to read it */
-    #endif//SIGPIPE
-    
-    #ifndef SOL_TCP
-    #define SOL_TCP 6  /* socket options TCP level */
-    #endif//SOL_TCP
-
-    #ifndef TCP_USER_TIMEOUT
-    #define TCP_USER_TIMEOUT 18  /* how long for loss retry before timeout [ms] */
-    #endif//TCP_USER_TIMEOUT
 
     HTTP_SERVER_API void start_server(int port, route_list_t *routes) {
         signal(SIGPIPE, SIG_IGN);
@@ -578,7 +583,7 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
         const char on = 1;
         // const char off = 0;
         setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR , &on, sizeof(on));
-        // setsockopt(sockfd, SOL_SOCKET, SO_LINGER    , &on, sizeof(on));
+        setsockopt(sockfd, SOL_SOCKET, SO_LINGER    , &on, sizeof(on));
         // setsockopt(sockfd, SOL_SOCKET, SO_KEEPALIVE , &on, sizeof(on));
 
         // struct timeval timeout;      
@@ -599,15 +604,13 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
             print_net_error(2);
         }
 
-        printf("server started on port %d !\n", port);
+        inf("server started on port [%d] !\n", port);
         
         if(listen(sockfd, 10) != 0) {
             print_net_error(3);
         }
 
-        
-
-        printf("listening ... \n");
+        dbg("listening ...");
         socket_t client;
 
         SSL_CTX *ctx = {0};
@@ -621,7 +624,7 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
 
             // Create SSL_CTX
             // ctx = SSL_CTX_new(TLS_server_method());
-            ctx = SSL_CTX_new(SSLv23_server_method());
+            ctx = SSL_CTX_new(TLS_server_method());
             SSL_CTX_set_options(ctx, SSL_OP_ALL);
             // Load certificate and private key into ctx
             if (!ctx) {
@@ -643,8 +646,7 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
                 // Handle error
             }
             if (!SSL_CTX_check_private_key(ctx)) {
-                    err("SSL ERR: %s","SSL/3");
-                fprintf(stderr, "Private key does not match the certificate\n");
+                err("SSL ERR: %s : %s","SSL/3","Private key does not match the certificate");
                 // Handle error
             }
 
