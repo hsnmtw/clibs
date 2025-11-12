@@ -119,9 +119,9 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
 
 // --- IMPLEMENTATION
 
-#ifndef MSG_NOSIGNAL
-#define MSG_NOSIGNAL 0x4000 /* Do not generate SIGPIPE.  */
-#endif//MSG_NOSIGNAL
+// #ifndef MSG_NOSIGNAL
+// #define MSG_NOSIGNAL 0x4000 /* Do not generate SIGPIPE.  */
+// #endif//MSG_NOSIGNAL
 
 
 #ifdef _SERVER_HTTP_IMPLEMENTATION
@@ -153,13 +153,13 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
     HTTP_SERVER_API int net_send(client_t s,const char *buf,int len,int flags) {
         if (s.ssl !=NULL && s.port == 443)
             return SSL_write(s.ssl,buf,len);
-        return send(s.sockfd,buf,len,flags|MSG_NOSIGNAL);
+        return send(s.sockfd,buf,len,flags);
     }
     
     HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags) {
         if (s.ssl != NULL && s.port == 443)
             return SSL_read(s.ssl,buf,len-1);
-        return recv(s.sockfd,buf,len-1,flags|MSG_NOSIGNAL);        
+        return recv(s.sockfd,buf,len-1,flags);        
     }
 
     HTTP_SERVER_API void get_content_type(char *content_type, const char *file_path) {
@@ -304,7 +304,7 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
                 NULL
             );
 
-            fprintf(stderr,"ERROR: Winsock error %ld: %s\n", error_code, message_buffer);
+            fprintf(stderr,"ERROR[%d]: Winsock error %ld: %s\n",_ref, error_code, message_buffer);
             //exit(1);
         #else
             err("[NET/0/0x%03x] ERROR: %d: %s\n",_ref, errno, strerror(errno));        
@@ -576,7 +576,7 @@ HTTP_SERVER_API int net_recv(client_t s, char *buf,int len,int flags);
         }
 
         const char on = 1;
-        const char off = 0;
+        // const char off = 0;
         setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR , &on, sizeof(on));
         // setsockopt(sockfd, SOL_SOCKET, SO_LINGER    , &on, sizeof(on));
         // setsockopt(sockfd, SOL_SOCKET, SO_KEEPALIVE , &on, sizeof(on));
