@@ -38,10 +38,11 @@
 #include <string.h>
 #include <pthread.h>
 #ifdef __WIN32__
-#   define realpath(N,R) _fullpath((R),(N),PATH_MAX)
 #   include <ws2tcpip.h>
 #   include <winsock2.h>
 #   include <windows.h>
+#   define realpath(N,R) _fullpath((R),(N),PATH_MAX)
+// #   define sendfile(a,b,c,d) TransmitFile(a,b,c,d)
 #else
 #   include <poll.h>
 #   include <errno.h>
@@ -50,6 +51,7 @@
 #   include <arpa/inet.h>
 #   include <netinet/tcp.h>
 #endif
+#include <sys/stat.h>
 #include <signal.h>
 #include <unistd.h> // For close()
 #include "hash_map.h"
@@ -114,6 +116,7 @@ typedef struct {
     char *query;
     char *headers;
     char *body;
+    int server_socket;
 } request_t;
 
 typedef struct {
@@ -131,6 +134,7 @@ typedef struct {
     // char     *username;
     // uchar_t  *authorizations;
     int retry;
+    int server_socket;
 } client_t;
 
 const response_t NOT_FOUND_RESPONSE = {404,HTTP_CONTENT_TEXT,HTTP_STATUS_404};
@@ -156,7 +160,7 @@ HTTP_SRVR_API void *HTTP_SRVR_handle_client(void* arg);
 HTTP_SRVR_API void  HTTP_SRVR_start(int port, route_list_t *routes);
 HTTP_SRVR_API void  HTTP_SRVR_get_secure_token();
 HTTP_SRVR_API bool  HTTP_SRVR_file_exists(const char *file_path);
-HTTP_SRVR_API void  HTTP_SRVR_send_file(char *req_path, client_t client);
+HTTP_SRVR_API void  HTTP_SRVR_send_file(int server_socket,char *req_path, client_t client);
 HTTP_SRVR_API void  HTTP_SRVR_get_content_type(char *content_type, const char *file_path);
 HTTP_SRVR_API void  HTTP_SRVR_get_socket_ip(char *dest, int socket_fd);
 HTTP_SRVR_API char *HTTP_SRVR_get_ssl_err_name(int err) ;
@@ -174,8 +178,13 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
 
 #ifdef _HTTP_SRVR_IMPLEMENTATION
 
+#ifdef __WIN32__
+#define ASSETS_PATH "D:\\coding\\fms\\assets"
+#else
 #define ASSETS_PATH "/home/fms/fms/assets"
+#endif
 #define ASSETS_PATH_LENGTH strlen(ASSETS_PATH)
+
 
     static volatile bool keep_running = true;
 
@@ -554,21 +563,25 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
         HTTP_SRVR_send(client,"Connection: close\r\n\r\n",21,0);
     }
 
+    size_t get_file_size(const char * file_path) {
+        struct stat finfo;
+        stat(file_path, &finfo);
+        return finfo.st_size;
+    }
+
+
+
     #define BLEN 1024
-    HTTP_SRVR_API void HTTP_SRVR_send_file(char *req_path, client_t client) {
+    HTTP_SRVR_API void HTTP_SRVR_send_file(int server_socket,char *req_path, client_t client) {
+        (void)server_socket;
         //inf("here: %s [%s]",__func__,req_path);
         char content_type[50];
         HTTP_SRVR_get_content_type(content_type, req_path);
         char header[200] = {0};
         
-        int r=0;
         char buffer[BLEN];
-        FILE *fp = fopen(req_path,"rb");
-        size_t size = 0;
-        if (fseek(fp, 0, SEEK_END) == 0) {
-            size = ftell(fp);
-            fseek(fp, 0, SEEK_SET);
-        }
+        size_t size = get_file_size(req_path);
+
         if (strncmp("font", content_type, 4) != 0 || strncmp("image", content_type, 5) != 0) {
             char *expire = DATE_H_date_format(DATE_H_add_to_date(DATE_H_now(),DATE_H_DAY,1),"ddd, dd MMM yyyy HH:mm:ss");
             sprintf(header,"Expires: %s GMT\r\nCache-Control: public, max-age=31536001, immutable\r\n",expire);
@@ -580,10 +593,10 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
         }
         send_headers(200,content_type,header,client);
 
-        while (fp != NULL && (r=fread(buffer,1,BLEN,fp))>0) {
+        FILE *fp = fopen(req_path,"rb");
+        for (int r=0;fp != NULL && (r=fread(buffer,1,BLEN,fp))>0;) {
             HTTP_SRVR_send(client,buffer,r,0);
-        }
-
+        }        
         fclose(fp);
         
         if (client.port == PORT_HTTPS && client.ssl != NULL) {
@@ -591,6 +604,7 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
             SSL_read(client.ssl, buffer, 128);
         }
 
+        usleep(500);
         shutdown(client.sockfd,SHUT_WR);
         read(client.sockfd, buffer, 128);
         close(client.sockfd);
@@ -612,8 +626,10 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
             "Moved to "DOMAIN_NAME
             ;
         HTTP_SRVR_send(client,b,strlen(b),0);
+        usleep(500);
         shutdown(client_sockfd,SHUT_WR);
         read(client_sockfd, b, 128);
+        // shutdown(client_sockfd,SHUT_RDWR);
         close(client_sockfd);        
         return NULL;
 
@@ -675,6 +691,7 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
                 char buf[128];
                 shutdown(client.sockfd, SHUT_WR);
                 read(client.sockfd,buf,128);
+                // shutdown(client.sockfd,SHUT_RDWR);
                 close(client.sockfd);
                 return NULL; // non-zero error code
             } 
@@ -687,10 +704,13 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
         
         request_t req = {0};
         parse_http_request(&req,bytes,buf);
-
+        req.server_socket = client.server_socket;
                     // struct sockaddr_in remote_addr;
                     // socklen_t addr_len = sizeof(remote_addr);
                     // getpeername(client.sockfd, (struct sockaddr *)&remote_addr, &addr_len);
+
+        inf("client [%s] requested : %s", client.ip, req.path);
+
 
         response_t response = NOT_FOUND_RESPONSE;
         
@@ -698,7 +718,6 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
             // printf("\n\n------------------\nexists [%s]: %d\n----------------\n",req.path, HTTP_SRVR_file_exists(req.path));
             char route_path[1024] = {0};
             sprintf(route_path,"%s:%s",req.method,req.path);
-            inf("client [%s] requested : %s", client.ip, route_path);
             int index = hash_map_get(&routes_map, route_path);
             route_t route = global_routes.items[index];
             // printf("\n\n------------------\nexists [%s]: %d\n----------------\n",req.path, HTTP_SRVR_file_exists(req.path));
@@ -717,6 +736,7 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
                 }
                 shutdown(client.sockfd,SHUT_WR);
                 read(client.sockfd, buf, 128);
+                // shutdown(client.sockfd,SHUT_RDWR);
                 close(client.sockfd);
                 return NULL;  //non-zero error code
             }
@@ -727,11 +747,12 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
                 realpath(path, resolved_path);
                 sprintf(path,"%s",resolved_path);
                 free(resolved_path);
+                wrn("path = '%s' // '%s'", path, ASSETS_PATH);
                 if(strncmp(path,ASSETS_PATH,ASSETS_PATH_LENGTH) != 0) {
                     response.status = 403;
                     response.body = "NOT AUTHORIZED";   
                 } else {
-                    HTTP_SRVR_send_file(path, client);
+                    HTTP_SRVR_send_file(client.server_socket, path, client);
                     return NULL;
                 }
             }
@@ -756,8 +777,10 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
             SSL_read(client.ssl, buffer, 128);
         }
         
+        usleep(500);
         shutdown(client.sockfd, SHUT_WR);
         read(client.sockfd, buf, 128);
+        // shutdown(client.sockfd,SHUT_RDWR);
         close(client.sockfd);
         return NULL;
     }
@@ -811,7 +834,7 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
             }
         #endif
         
-        if((server_sockfd = socket(AF_INET , SOCK_STREAM , 0 )) == 0) {
+        if((server_sockfd = socket(AF_INET , SOCK_STREAM , IPPROTO_TCP )) == 0) {
             HTTP_SRVR_print_net_error(1);
         }
 
@@ -872,11 +895,14 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
             SSL_CTX_set_timeout(ctx, 3600); // Sessions expire after 1 hour
         }
 
+        // printf("1/here ...\n");
         while(keep_running) {       
             client_sockfd = accept(server_sockfd, (struct sockaddr *)&address, (socklen_t*)&addrlen);
+            // printf("2/here ...\n");
             if (client_sockfd < 1) {
+                perror("failed to connect accept() failed");
                 HTTP_SRVR_print_net_error(9);
-                printf("\n~~~~~~~\ndenied\n~~~~~~~\n");
+                // printf("\n~~~~~~~\ndenied\n~~~~~~~\n");
                 shutdown(client_sockfd,SHUT_RDWR);
                 close(client_sockfd);
                 continue;
@@ -896,6 +922,7 @@ HTTP_SRVR_API int HTTP_SRVR_recv(client_t s, char *buf,int len,int flags);
             clientArg->port=port;
             clientArg->ip=strdup(ip);
             clientArg->retry=0;
+            clientArg->server_socket=server_sockfd;
             pthread_t thread;
             if (is_default_handler){
                 pthread_create(&thread,NULL,HTTP_SRVR_handle_client,(void*)clientArg);

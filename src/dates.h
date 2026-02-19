@@ -6527,7 +6527,7 @@ DATES_API date_t DATE_H_add_to_date(date_t date, date_part_e date_part, int delt
         end.y += 1;
     }
 
-    while (end.m<0) {
+    while (end.m<1) {
         end.m += 12;
         end.y -= 1;
     }
